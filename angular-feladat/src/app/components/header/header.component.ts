@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import{UserService} from '../../service/userservice.service';
 import{User} from '../../models/User';
-
-import { stringify } from '@angular/compiler/src/util';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,11 +19,11 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
       this.currentUser = this.userService.getCurrentUserValue;
-      console.log(this.currentUser);
   }
 
   logOut():void{
     this.userService.logout();
+    this.currentUser = null;
   }
   public isLoggedIn():boolean{
     return this.currentUser !== null && this.currentUser.username.length > 0;

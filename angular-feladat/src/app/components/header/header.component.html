@@ -17,8 +17,8 @@
         <div class="navbar-nav">
           <a class="nav-item nav-link" routerLink="/">Főoldal</a>
         </div>      
-        <div class="navbar-nav ml-auto">
-          <a  class="nav-item nav-link" (click)="logOut" >Kijelentkezés ({{currentUser.username}} - {{currentUser.role}})</a>
+        <div class="navbar-nav brand-color ml-auto">
+          <a class="nav-item nav-link" [routerLink]="" (click)="logOut()" >Kijelentkezés ({{currentUser.username}} - {{currentUser.role}})  </a>
         </div>
       </div>
      </ng-template>
