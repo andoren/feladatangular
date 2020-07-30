@@ -26,10 +26,7 @@ export class UserService {
    }
 
    login(username, password):Observable<any> {
-    let user:User = new User;
-    user.username = username;
-    user.password = password;
-    return this.http.post<any>(`${this.sharedData.BASE_URL}/login`,user)
+    return this.http.post<User>(`${this.sharedData.BASE_URL}/login`,{"username":username,"password":password})
         .pipe(map(user => {
             localStorage.setItem('user', JSON.stringify(user));
             this.currentUserSubject.next(user);
@@ -38,7 +35,8 @@ export class UserService {
 }
     logout(){
       localStorage.removeItem('user');
-      this.currentUserSubject.next(null);
+      this.currentUserSubject.next(new User());
+      
     }
     public get getCurrentUserValue(): User {
       return this.currentUserSubject.value;

@@ -3,13 +3,15 @@ export class User{
     username:string;
     realname:string;
     email:string;
-    isAdmin:boolean;
+    role:string;
     token:string;
-    password:string; 
     getToken():string{
         return this.token;
     }
     setToken(token:string):void{
         this.token = token;
+    }
+    isAdmin():boolean{
+        return this.role=="admin";
     }
 }

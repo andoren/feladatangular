@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import{UserService} from '../../service/userservice.service';
 import{User} from '../../models/User';
-import * as sha1 from 'js-sha1';
+
+import { stringify } from '@angular/compiler/src/util';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,23 +13,21 @@ import * as sha1 from 'js-sha1';
 export class HeaderComponent implements OnInit {
   @Input() title:string;
   currentUser:User
-  constructor(private userService:UserService) {
-
+  constructor(private userService:UserService, private router:Router) {
+      router.events.subscribe(()=>{
+        this.currentUser = this.userService.getCurrentUserValue;
+      });
    }
 
   ngOnInit(): void {
+      this.currentUser = this.userService.getCurrentUserValue;
+      console.log(this.currentUser);
   }
-  logIn():void{
-       this.userService.login("anita",sha1("Feladat2020&")).subscribe(user=>{
-         this.currentUser = user;
-       });
 
-  }
   logOut():void{
-
     this.userService.logout();
   }
   public isLoggedIn():boolean{
-    return this.currentUser != null;
+    return this.currentUser !== null && this.currentUser.username.length > 0;
   }
 }
