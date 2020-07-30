@@ -5,11 +5,7 @@ export class User{
     email:string;
     isAdmin:boolean;
     token:string;
-    password:string;
-    constructor(){
-
-    }
-    
+    password:string; 
     getToken():string{
         return this.token;
     }
