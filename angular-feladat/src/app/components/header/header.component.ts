@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import{UserService} from '../../service/userservice.service';
+import{User} from '../../models/User';
 
 @Component({
   selector: 'app-header',
@@ -7,10 +9,24 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   @Input() title:string;
-  @Input() 
-  constructor() { }
+  currentUser:User
+  constructor(private userService:UserService) {
+
+   }
 
   ngOnInit(): void {
   }
+  logIn():void{
+       this.userService.login("misi","Feladat2020#").subscribe(user=>{
+         this.currentUser = user;
+       });
 
+  }
+  logOut():void{
+
+    this.userService.logout();
+  }
+  public isLoggedIn():boolean{
+    return this.currentUser != null;
+  }
 }
