@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import{UserService} from '../../service/userservice.service';
 import{User} from '../../models/User';
+import * as sha1 from 'js-sha1';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
   logIn():void{
-       this.userService.login("misi","Feladat2020#").subscribe(user=>{
+       this.userService.login("anita",sha1("Feladat2020&")).subscribe(user=>{
          this.currentUser = user;
        });
 

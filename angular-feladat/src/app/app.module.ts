@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ProductsComponent } from './components/products/products.component';
+import * as sha1 from 'js-sha1';
 
 @NgModule({
   declarations: [
