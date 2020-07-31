@@ -6,7 +6,11 @@
     </button>
     <div  class="collapse navbar-collapse" id="navbarResponsive">
       <ul  class="navbar-nav ml-auto">
-      <app-menu-item *ngFor="let menuItem of menuItems" [menuItem]="menuItem" ></app-menu-item>
+        <app-menu-item 
+        *ngFor="let menuItem of menuItems" 
+        [menuItem]="menuItem"
+        (logOutEvent)="logOut($event)"
+        ></app-menu-item>
       </ul>
     </div>
   </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {MenuItem} from "../../../models/MenuItem";
 @Component({
   selector: 'app-menu-item',
@@ -7,15 +7,22 @@ import {MenuItem} from "../../../models/MenuItem";
 })
 export class MenuItemComponent implements OnInit {
   @Input() menuItem:MenuItem;
+  @Output() logOutEvent:EventEmitter<any> = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.menuItem);
   }
-  
+  logOut():void{
+
+    this.logOutEvent.emit({'logoutevent':'true'});
+  }
   setClasses():void{
     let classes = {
       'nav-item':true,
     }
   }
+  logOutItem():boolean{
+    return this.menuItem.route == "logout";
+  }
+  
 }

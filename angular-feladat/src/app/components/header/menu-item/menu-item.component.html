@@ -1,3 +1,9 @@
-<li [ngClass]="setClasses()">
+<li *ngIf="!logOutItem() else logoutBlock;" [ngClass]="setClasses()">
   <a class="nav-link" routerLink={{menuItem.route}}>{{menuItem.text}}</a>
 </li>
+<ng-template #logoutBlock>
+  <li [ngClass]="setClasses()">
+    <a class="nav-link" (click)="logOut()">{{menuItem.text}}</a>
+  </li>
+</ng-template>
+

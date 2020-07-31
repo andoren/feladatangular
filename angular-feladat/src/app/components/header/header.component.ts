@@ -23,12 +23,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
       this.currentUser = this.userService.getCurrentUserValue;
       this.createMenuItems();
-      console.log(this.menuItems);
   }
 
   logOut():void{
     this.userService.logout();
     this.currentUser = null;
+    this.createMenuItems();
   }
   public isLoggedIn():boolean{
     return this.currentUser !== null && this.currentUser.username.length > 0;
