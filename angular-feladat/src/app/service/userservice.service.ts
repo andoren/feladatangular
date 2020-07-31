@@ -32,7 +32,16 @@ export class UserService {
             this.currentUserSubject.next(user);
             return user;
         }));
-}
+    }
+    register(user:User):Observable<any>{
+      return this.http.post<User>(`${this.sharedData.BASE_URL}/register`,user).pipe(
+        map(user =>{
+          if(user.token !== null)localStorage.setItem('user', JSON.stringify(user));
+          this.currentUserSubject.next(user);
+          return user;
+        })
+      )
+    }
     logout(){
       localStorage.removeItem('user');
       this.currentUserSubject.next(new User());

@@ -1,0 +1,53 @@
+<div class="full d-flex justify-content-center align-items-center">
+  <div class="cardcont">
+    <div style="background-color: white; padding: 20px;" >
+
+      <div >
+        <div >
+          <h3>Regisztráljon be!</h3>
+        </div>
+        <form [formGroup]="userForm" (click)="register()" #formDir="ngForm" >
+          <div class="form-group">
+            <label for="realname">Teljes név:</label>
+            <input type="text" required class="form-control" formControlName="realname" placeholder="Írja be a nevét...">
+            <div *ngIf="realname.invalid && (realname.dirty || realname.touched)"  class="alert alert-danger"> 
+              <span>Hibás név!</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="username">Felhasználónév:</label>
+            <input type="text" name="username" class="form-control" formControlName="username" placeholder="Írja be a felhasználónevét...">
+            <div *ngIf="username.invalid && (username.dirty || username.touched)"  class="alert alert-danger"> 
+              <span>Hibás felhasználónév!</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Jelszó:</label>
+            <input type="password" name="password" class="form-control" formControlName="password" placeholder="Írja be a jelszavát...">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)"  class="alert alert-danger"> 
+              <span>Hibás jelszó!</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Jelszó ismétlés:</label>
+            <input type="password" name="password2" class="form-control" formControlName="password2" placeholder="Írja be a jelszavát...">
+            <div *ngIf="password2.invalid && (password2.dirty || password2.touched)"  class="alert alert-danger"> 
+              <span>Hibás jelszó!</span>
+            </div>
+            <div *ngIf="userForm.errors?.mustMatch && (userForm.touched || userForm.dirty)"  class="alert alert-danger"> 
+              <span>A két jelszó nem egyezik meg!</span>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <label for="email">E-mail cím:</label>
+            <input type="email" name="email" class="form-control" formControlName="email" placeholder="Írja be az e-mail címét...">
+          </div>
+          <input type="submit" class="btn btn-primary btn-block" value="Regisztrálás">
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

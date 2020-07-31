@@ -3,17 +3,12 @@
       <div class="card">
         <div class="card-header text-light bg-dark">
           <h3>Jelentkezzen be!</h3>
-          <div class="d-flex justify-content-end social_icon">
-            <span><i class="fab fa-facebook-square"></i></span>
-            <span><i class="fab fa-google-plus-square"></i></span>
-            <span><i class="fab fa-twitter-square"></i></span>
-          </div>
         </div>
         <div class="card-body">
           <form (ngSubmit)="logIn()">
             <div class="form-group">
               <label for="username">Felhasználónév:</label>
-              <input type="email" name="username" class="form-control" [(ngModel)] = "username" aria-describedby="emailHelp" placeholder="Írja be a felhasználónevét...">
+              <input type="email" name="username" class="form-control" [(ngModel)] = "username"  placeholder="Írja be a felhasználónevét...">
             </div>
             <div class="form-group">
               <label for="password">Jelszó</label>
@@ -27,7 +22,7 @@
         </div>
         <div class="card-footer bg-dark">
           <div class="d-flex text-light justify-content-center links">
-            Nincs még fiókja?<a href="#">Regisztráció</a>
+            Nincs még fiókja?<a  routerLink="/register">Regisztráció</a>
           </div>
           <div class="d-flex justify-content-center">
             <a href="#">Elfelejtette a jelszavát?</a>

@@ -5,6 +5,7 @@ export class User{
     email:string;
     role:string;
     token:string;
+    password:string;
     getToken():string{
         return this.token;
     }
