@@ -1,26 +1,48 @@
-<nav class="navbar navbar-expand-lg  bg-dark ">
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">{{title}}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div *ngIf="!isLoggedIn(); else loggedin"  class="collapse navbar-collapse w-100" id="navbarNav">
-      <span class="navbar-brand brand-color">{{title}}</span>
-      <div class="navbar-nav">
-        <a class="nav-link" routerLink="/">Főoldal</a>
-        <a class="nav-link" routerLink="/login">Bejelentkezés</a>
-      </div>
+    <div *ngIf="!isLoggedIn(); else loggedin"  class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/">Főoldal<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Keresés</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Kapcsolat</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Segítség</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login">Bejelentkezés</a>
+        </li>
+      </ul>
     </div>
-   
     <ng-template #loggedin>
-      <div class="collapse navbar-collapse w-100" id="navbarNav">
-        <span class="navbar-brand brand-color">{{title}}</span>
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" routerLink="/">Főoldal</a>
-        </div>      
-        <div class="navbar-nav brand-color ml-auto">
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/">Főoldal<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Keresés</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Kapcsolat</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Segítség</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-item nav-link" [routerLink]="" (click)="logOut()" >Kijelentkezés ({{currentUser.username}} - {{currentUser.role}})  </a>
-        </div>
-      </div>
-     </ng-template>
-    
+        </li>
+      </ul>
+    </div>
+  </ng-template>
+  </div>
 </nav>

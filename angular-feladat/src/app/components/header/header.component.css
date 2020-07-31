@@ -1,7 +1,11 @@
 .brand-color { 
   color: #fff;
+  font-size: 4vh;
 }
 
 a:hover{
   color: #fff;
+}
+.nav{
+  margin-bottom: 40px;
 }
