@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   username:string;
   password:string;
   currentUser:User;
+  invalidLogin:boolean;
   constructor(private userService:UserService, private router:Router) { }
   
   ngOnInit(): void {
@@ -24,13 +25,15 @@ export class LoginComponent implements OnInit {
 
   logIn():void{
     this.userService.login(this.username,sha1(this.password)).subscribe(user=>{
-      console.log(user);
+      this.invalidLogin = false
       this.currentUser = user;
     },error=>{
       console.log(error);
     }
     ,()=>{
-      if(this.currentUser.token.length > 0) this.router.navigate(["/"]);
+      if(this.currentUser && this.currentUser.token !== null) this.router.navigate(["/"]);
+      else {this.invalidLogin = true};
+   
     });
  
 }

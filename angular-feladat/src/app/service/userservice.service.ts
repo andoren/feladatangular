@@ -28,7 +28,7 @@ export class UserService {
    login(username, password):Observable<any> {
     return this.http.post<User>(`${this.sharedData.BASE_URL}/login`,{"username":username,"password":password})
         .pipe(map(user => {
-            localStorage.setItem('user', JSON.stringify(user));
+            if(user.token !== null)localStorage.setItem('user', JSON.stringify(user));
             this.currentUserSubject.next(user);
             return user;
         }));

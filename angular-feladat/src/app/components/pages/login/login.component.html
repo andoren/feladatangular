@@ -20,6 +20,9 @@
               <input type="password" name="password" class="form-control" [(ngModel)]="password" placeholder="Írja be a jelszavát...">
             </div>
             <input type="submit" class="btn btn-primary btn-block" value="Bejelentkezés">
+            <div *ngIf="invalidLogin" class="danger">
+              <span >Hibás felhasználónév vagy jelszó!</span>
+            </div>
           </form>
         </div>
         <div class="card-footer bg-dark">

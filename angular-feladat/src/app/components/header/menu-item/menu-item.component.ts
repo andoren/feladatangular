@@ -8,6 +8,7 @@ import {MenuItem} from "../../../models/MenuItem";
 export class MenuItemComponent implements OnInit {
   @Input() menuItem:MenuItem;
   @Output() logOutEvent:EventEmitter<any> = new EventEmitter();
+ 
   constructor() { }
 
   ngOnInit(): void {

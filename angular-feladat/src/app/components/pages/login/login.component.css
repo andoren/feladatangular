@@ -19,3 +19,9 @@
   .links a{
   margin-left: 4px;
   }
+  .danger{
+    color:red;
+    margin-top:10px;
+    width: 100%;
+    text-align: center;
+  }
