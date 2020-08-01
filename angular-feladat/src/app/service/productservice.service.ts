@@ -6,7 +6,7 @@ import { Shared } from '../models/Shared';
 @Injectable({
   providedIn: 'root'
 })
-export class ProductserviceService {
+export class Productservice{
 
   constructor(private http:HttpClient, private sharedData:Shared) { }
   getProducts():Observable<any> {
