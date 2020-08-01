@@ -4,6 +4,8 @@ import { User } from 'src/app/models/User';
 import { ɵangular_packages_platform_browser_platform_browser_d } from '@angular/platform-browser';
 import { UserService } from 'src/app/service/userservice.service';
 import {mustMatchValidator } from 'src/app/validators/mustmatch.validator';
+import * as sha1 from 'js-sha1';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +16,7 @@ export class RegisterComponent implements OnInit {
   user:User = new User();
   passwordmatch:string;
   userForm:FormGroup;
-  constructor(private userService:UserService) { }
+  constructor(private userService:UserService, private route:Router) { }
 
   ngOnInit(): void {
     this.user.email="";
@@ -63,7 +65,17 @@ export class RegisterComponent implements OnInit {
     return this.user.password != this.passwordmatch;
   }
   register():void{
-
-
-
-}}
+    this.user.username = this.username.value;
+    this.user.realname = this.realname.value;
+    this.user.email = this.email.value;
+    this.user.password = sha1(this.password.value);
+    console.log(this.user);
+    this.userService.register(this.user).subscribe(user=>{
+      this.route.navigate(["/"])
+    },error=>{
+      console.log(error);
+    }
+    );
+ 
+  }
+}
