@@ -50,8 +50,8 @@ export class HeaderComponent implements OnInit {
       else{
         this.menuItems = this.createPublicMenu();
       }
-    }
-    private createDefaultMenu():MenuItem[]{
+  }
+   private createDefaultMenu():MenuItem[]{
       let tempItems = [
         {'text':'Főoldal','route':'/'},
         {'text':'Keresés','route':'/'},
@@ -59,7 +59,7 @@ export class HeaderComponent implements OnInit {
         {'text':'Segítség','route':'/'}
       ];
       return tempItems;
-    }
+  }
   private createPublicMenu():MenuItem[]{
     let tempItems = this.createDefaultMenu();
     tempItems.push( {'text':'Bejelentkezés','route':'login'} );

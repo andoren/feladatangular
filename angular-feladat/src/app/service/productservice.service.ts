@@ -10,6 +10,6 @@ export class Productservice{
 
   constructor(private http:HttpClient, private sharedData:Shared) { }
   getProducts():Observable<any> {
-    return this.http.get<Product[]>(this.sharedData.BASE_URL+"getproducts");
+    return this.http.get<Product[]>(this.sharedData.PUBLIC_BASE_URL+"/getproducts");
   }
 }
