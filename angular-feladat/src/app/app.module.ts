@@ -10,6 +10,7 @@ import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { MenuItemComponent } from './components/header/menu-item/menu-item.component';
 import { RegisterComponent } from './components/pages/register/register.component';
 import { ProductItemComponent } from './components/pages/products/product-item/product-item.component';
+import { FooterComponent } from './components/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +19,8 @@ import { ProductItemComponent } from './components/pages/products/product-item/p
     LoginComponent,
     MenuItemComponent,
     RegisterComponent,
-    ProductItemComponent
+    ProductItemComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
