@@ -1,0 +1,10 @@
+.card-body{
+  max-width: 300px !important;
+
+  background-color: #f4f3f5;
+  margin-bottom: 30px;
+}
+.card-text{
+  height: 45px;
+  overflow: hidden;
+}
