@@ -1,33 +1,29 @@
-<div class="full d-flex justify-content-center align-items-center">
-    <div class="cardcont">
-      <div class="card">
-        <div class="card-header text-light bg-dark">
-          <h3>Jelentkezzen be!</h3>
+<div style="padding-top: 20px;">
+  <div>
+    <h3 >Jelentkezzen be!</h3>
+  </div>
+  <div>
+    <form (ngSubmit)="logIn()">
+      <div class="form-group">
+        <label for="username">Felhasználónév:</label>
+        <input type="email" name="username" class="form-control" [(ngModel)] = "username"  placeholder="Írja be a felhasználónevét...">
+      </div>
+      <div class="form-group">
+        <label for="password">Jelszó</label>
+        <input type="password" name="password" class="form-control" [(ngModel)]="password" placeholder="Írja be a jelszavát...">
+      </div>
+      <input type="submit" class="btn btn-primary btn-block" value="Bejelentkezés">
+        <div *ngIf="invalidLogin" class="danger" >
+          <span >Hibás felhasználónév vagy jelszó!</span>
         </div>
-        <div class="card-body">
-          <form (ngSubmit)="logIn()">
-            <div class="form-group">
-              <label for="username">Felhasználónév:</label>
-              <input type="email" name="username" class="form-control" [(ngModel)] = "username"  placeholder="Írja be a felhasználónevét...">
-            </div>
-            <div class="form-group">
-              <label for="password">Jelszó</label>
-              <input type="password" name="password" class="form-control" [(ngModel)]="password" placeholder="Írja be a jelszavát...">
-            </div>
-            <input type="submit" class="btn btn-primary btn-block" value="Bejelentkezés">
-            <div *ngIf="invalidLogin" class="danger">
-              <span >Hibás felhasználónév vagy jelszó!</span>
-            </div>
-          </form>
-        </div>
-        <div class="card-footer bg-dark">
-          <div class="d-flex text-light justify-content-center links">
-            Nincs még fiókja?<a  routerLink="/register">Regisztráció</a>
-          </div>
-          <div class="d-flex justify-content-center">
-            <a href="#">Elfelejtette a jelszavát?</a>
-          </div>
-        </div>
+    </form>   
+    <div>
+      <div class="d-flex  justify-content-center links"style="padding-top:20px">
+         Nincs még fiókja?&nbsp;
+         <a  routerLink="/register">Regisztráció</a>
+      </div>
+      <div class="d-flex justify-content-center" style="padding-bottom:20px">
+        <a href="#">Elfelejtette a jelszavát?</a>
       </div>
     </div>
   </div>
