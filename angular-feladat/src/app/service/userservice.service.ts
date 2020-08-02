@@ -49,10 +49,8 @@ export class UserService {
       localStorage.removeItem('user');
       this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
       this.router.navigate(["login"]);
-      
     }
     public get getCurrentUserValue(): User {
       return this.currentUserSubject.value;
   }
-
 }
