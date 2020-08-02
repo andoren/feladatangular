@@ -6,12 +6,14 @@ import { RegisterComponent } from './components/pages/register/register.componen
 import {ProductsComponent} from './components/pages/products/products.component';
 import { NewproductComponent } from './components/pages/newproduct/newproduct.component';
 import { NonauthproductsComponent } from './components/pages/nonauthproducts/nonauthproducts.component';
+import {MyproductsComponent} from './components/pages/myproducts/myproducts.component'
 const routes: Routes = [
   {path:'',component:ProductsComponent},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:'newproduct',component:NewproductComponent},
-  {path:'notauthproducts',component:NonauthproductsComponent}
+  {path:'notauthproducts',component:NonauthproductsComponent},
+  {path:'myproducts',component:MyproductsComponent}
 ];
 
 @NgModule({

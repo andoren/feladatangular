@@ -25,7 +25,7 @@ export class Productservice{
     return this.http.get<Product[]>(`${this.sharedData.PROTECTED_BASE_URL}/notauthproducts`,this.getHeaderOption());
   }
   getProductsByUserId():Observable<any> {
-    return this.http.get<Product[]>(`${this.sharedData.PROTECTED_BASE_URL}/getproductsbyuserid/`,this.getHeaderOption());
+    return this.http.get<Product[]>(`${this.sharedData.PROTECTED_BASE_URL}/getproductsbyuserid/${this.sharedData.getLoggedInUser().id}`,this.getHeaderOption());
   }
   getHeaderOption():any{
     return this.options = {
