@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/models/Product';
 import { Router } from '@angular/router';
-
+import { registerLocaleData} from '@angular/common';
+import localeHu from '@angular/common/locales/hu';
+registerLocaleData(localeHu, 'hu');
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
@@ -9,9 +11,11 @@ import { Router } from '@angular/router';
 })
 export class ProductItemComponent implements OnInit {
   @Input()product:Product
-  constructor(private route:Router) { }
-
+  constructor(private route:Router) {
+   
+   }
   ngOnInit(): void {
+    this.product.created_date = new Date(Date.now());
   }
   readMore():void{
       this.route.navigate(['product/'+this.product.id]);

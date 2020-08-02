@@ -5,9 +5,26 @@
 
 }
 .card-text{
-  height: 45px;
+  height: 48px;
   overflow: hidden;
 }
 .product{
   padding:0px !important;
+}
+.truncate {
+  display: block;
+  display: -webkit-box;
+  max-width: 300px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sold{
+  position: absolute; 
+  margin-top: 60px; 
+  margin-left: 20px; 
+  transform: rotate(45deg); 
+  font-size: 5rem;
+  color: #00000047;
 }

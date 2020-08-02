@@ -10,4 +10,5 @@ export class Product{
   issold:boolean;
   created_date:Date;
   sold_date:Date;
+
 }

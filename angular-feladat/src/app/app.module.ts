@@ -11,6 +11,7 @@ import { MenuItemComponent } from './components/header/menu-item/menu-item.compo
 import { RegisterComponent } from './components/pages/register/register.component';
 import { ProductItemComponent } from './components/pages/products/product-item/product-item.component';
 import { FooterComponent } from './components/footer/footer.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { FooterComponent } from './components/footer/footer.component';
     ReactiveFormsModule
   ],
   providers: [],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
