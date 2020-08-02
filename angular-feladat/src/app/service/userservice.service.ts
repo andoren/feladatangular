@@ -4,6 +4,7 @@ import{User} from '../models/User';
 import { Observable,BehaviorSubject } from 'rxjs';
 import {Shared} from '../models/Shared';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 const httpOptions={
   headers:new HttpHeaders({
     'Content-Type':'application/json',
@@ -20,7 +21,7 @@ export class UserService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-   constructor(private http:HttpClient) {
+   constructor(private http:HttpClient, private router:Router) {
       this.sharedData = new Shared();
       this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
       this.currentUser = this.currentUserSubject.asObservable();
@@ -46,7 +47,8 @@ export class UserService {
     }
     logout(){
       localStorage.removeItem('user');
-      this.currentUserSubject.next(new User());
+      this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
+      this.router.navigate(["login"]);
       
     }
     public get getCurrentUserValue(): User {

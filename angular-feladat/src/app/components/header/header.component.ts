@@ -27,15 +27,17 @@ export class HeaderComponent implements OnInit {
 
   logOut():void{
     this.userService.logout();
-    this.currentUser = null;
-    this.createMenuItems();
+
+
+
   }
   public isLoggedIn():boolean{
     return this.currentUser !== null && this.currentUser.username.length > 0;
   }
   private createMenuItems(){
-      if(this.currentUser){
+      if(this.currentUser && this.currentUser != undefined){
           this.menuItems = this.createDefaultMenu();
+          this.menuItems.push({'text':'Termékeim','route':'myproducts'});
           this.menuItems.push({'text':'Új termék','route':'newproduct'});
 
         if(this.currentUser.role == "admin"){
@@ -44,6 +46,11 @@ export class HeaderComponent implements OnInit {
               'text':"Felhasználók",
               'route':"getusers"
             });
+          this.menuItems.push(
+              {
+                'text':"Termék engedélyezés",
+                'route':"getnonauthproducts"
+              });
         }
         this.menuItems.push({'text':'Kijelentkezés('+this.currentUser.username+')','route':'logout'});
       }
