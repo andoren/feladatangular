@@ -1,1 +1,36 @@
-<p>newproduct works!</p>
+<div class="">
+  <div class="cardcont">
+    <div style="background-color: white; padding: 20px;" >
+      <div >
+        <div >
+          <h3>Új termék hozzáadása</h3>
+        </div>
+        <form [formGroup]="productForm" #formDir="ngForm" >
+          <div class="form-group">
+            <label for="productname">Termék neve:</label>
+            <input type="text" name="prodcutname" required class="form-control" formControlName="productname" placeholder="Írja be a termék nevét...">
+          </div>
+          <div class="form-group">
+            <label for="description">Leírás:</label>
+            <input type="text" name="description" class="form-control" formControlName="description" placeholder="A termék leírása">
+          </div>
+          <div class="form-group">
+            <label for="price">Ára:</label>
+            <input type="number" name="price" class="form-control" formControlName="price" placeholder="Irja be a termék árát.">
+          </div>
+          <div class="clearfix">
+          <div class="form-group float left">
+            <input
+            style="display: none"
+            type="file" (change)="onFileChanged($event)"
+            #fileInput>
+          <button class="btn btn-secondary"  (click)="fileInput.click()">Kép kiválasztása</button>
+          <span *ngIf="selectedFile" style="margin-left: 10px;">{{selectedFile.name}}</span>
+          <input type="submit" class="btn btn-primary float-right"  (click)="addProduct()" value="Hozzáadás">
+        </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

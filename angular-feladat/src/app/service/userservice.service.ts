@@ -13,9 +13,10 @@ const httpOptions={
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
   sharedData:Shared;
-  options:HttpHeaders ;
+
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
