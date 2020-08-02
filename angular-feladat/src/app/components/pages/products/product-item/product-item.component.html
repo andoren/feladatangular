@@ -16,6 +16,7 @@
       <span >Felrakva: {{product.created_date | date:'yyyy-MM-dd'}}</span>
     </div>
       <a href="#" *ngIf="!product.issold" routerLink="/product/{{product.id}}" class="btn btn-primary float-right">Tovább</a> 
+      <a href="#" *ngIf="product.issold && productIsMine()" routerLink="/product/{{product.id}}" class="btn btn-success float-right">Összegzés</a> 
     </div>
   </div>
 </div>

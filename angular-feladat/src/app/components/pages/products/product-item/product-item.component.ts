@@ -3,6 +3,7 @@ import { Product } from 'src/app/models/Product';
 import { Router } from '@angular/router';
 import { registerLocaleData} from '@angular/common';
 import localeHu from '@angular/common/locales/hu';
+import { Shared } from 'src/app/models/Shared';
 registerLocaleData(localeHu, 'hu');
 @Component({
   selector: 'app-product-item',
@@ -11,7 +12,7 @@ registerLocaleData(localeHu, 'hu');
 })
 export class ProductItemComponent implements OnInit {
   @Input()product:Product
-  constructor(private route:Router) {
+  constructor(private route:Router, private shared:Shared) {
    
    }
   ngOnInit(): void {
@@ -19,5 +20,8 @@ export class ProductItemComponent implements OnInit {
   }
   readMore():void{
       this.route.navigate(['product/'+this.product.id]);
+  }
+  productIsMine():boolean{
+    return this.product.owner.id == this.shared.getLoggedInUser().id;
   }
 }
