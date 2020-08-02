@@ -27,9 +27,6 @@ export class HeaderComponent implements OnInit {
 
   logOut():void{
     this.userService.logout();
-
-
-
   }
   public isLoggedIn():boolean{
     return this.currentUser !== null && this.currentUser.username.length > 0;
@@ -49,7 +46,7 @@ export class HeaderComponent implements OnInit {
           this.menuItems.push(
               {
                 'text':"Termék engedélyezés",
-                'route':"getnonauthproducts"
+                'route':"notauthproducts"
               });
         }
         this.menuItems.push({'text':'Kijelentkezés('+this.currentUser.username+')','route':'logout'});

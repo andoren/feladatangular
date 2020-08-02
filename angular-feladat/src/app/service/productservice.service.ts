@@ -10,18 +10,22 @@ import { JsonPipe } from '@angular/common';
 })
 
 export class Productservice{
-  options ={}
+
   constructor(private http:HttpClient, private sharedData:Shared) { 
 
   }
+  options={};
   getProducts():Observable<any> {
     return this.http.get<Product[]>(`${this.sharedData.PUBLIC_BASE_URL}/getproducts`);
   }
   addProduct(product:Product):Observable<any>{
     return this.http.post<Product>(`${this.sharedData.PROTECTED_BASE_URL}/addproduct`,product,this.getHeaderOption())
   }
-  getNonAuthProducts():Observable<Product[]>{
-    return this.http.get<Product[]>(`${this.sharedData.PROTECTED_BASE_URL}/nonauthproducts`);
+  getNonAuthProducts():Observable<any>{
+    return this.http.get<Product[]>(`${this.sharedData.PROTECTED_BASE_URL}/notauthproducts`,this.getHeaderOption());
+  }
+  getProductsByUserId():Observable<any> {
+    return this.http.get<Product[]>(`${this.sharedData.PROTECTED_BASE_URL}/getproductsbyuserid/`,this.getHeaderOption());
   }
   getHeaderOption():any{
     return this.options = {
