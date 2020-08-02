@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
   private createMenuItems(){
       if(this.currentUser){
           this.menuItems = this.createDefaultMenu();
-          this.menuItems.push({'text':'Új termék','route':'myproducts'});
+          this.menuItems.push({'text':'Új termék','route':'newproduct'});
 
         if(this.currentUser.role == "admin"){
           this.menuItems.push(
