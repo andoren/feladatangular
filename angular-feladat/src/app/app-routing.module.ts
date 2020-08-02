@@ -8,6 +8,7 @@ import { NewproductComponent } from './components/pages/newproduct/newproduct.co
 import { NonauthproductsComponent } from './components/pages/nonauthproducts/nonauthproducts.component';
 import {MyproductsComponent} from './components/pages/myproducts/myproducts.component'
 import { ProductComponent } from './components/pages/product/product.component';
+import {UsersComponent} from './components/pages/users/users.component'
 const routes: Routes = [
   {path:'',component:ProductsComponent},
   {path:'login',component:LoginComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path:'newproduct',component:NewproductComponent},
   {path:'notauthproducts',component:NonauthproductsComponent},
   {path:'myproducts',component:MyproductsComponent},
-  {path:'product/:id',component:ProductComponent}
+  {path:'product/:id',component:ProductComponent},
+  {path:'getusers',component:UsersComponent}
 ];
 
 @NgModule({

@@ -15,6 +15,8 @@ import { NewproductComponent } from './components/pages/newproduct/newproduct.co
 import { NonauthproductsComponent } from './components/pages/nonauthproducts/nonauthproducts.component';
 import { MyproductsComponent } from './components/pages/myproducts/myproducts.component';
 import { ProductComponent } from './components/pages/product/product.component';
+import { UsersComponent } from './components/pages/users/users.component';
+import { UserItemComponent } from './components/pages/users/user-item/user-item.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { ProductComponent } from './components/pages/product/product.component';
     NewproductComponent,
     NonauthproductsComponent,
     MyproductsComponent,
-    ProductComponent
+    ProductComponent,
+    UsersComponent,
+    UserItemComponent
   ],
   imports: [
     BrowserModule,

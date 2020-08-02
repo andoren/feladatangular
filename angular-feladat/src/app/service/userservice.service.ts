@@ -17,7 +17,7 @@ const httpOptions={
 
 export class UserService {
   sharedData:Shared;
-
+  options = {};
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
@@ -26,7 +26,9 @@ export class UserService {
       this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
       this.currentUser = this.currentUserSubject.asObservable();
    }
-
+   getUsers():Observable<any>{
+     return this.http.get<User[]>(`${this.sharedData.PROTECTED_BASE_URL}/getusers`,this.getHeaderOption());
+   }
    login(username, password):Observable<any> {
     return this.http.post<User>(`${this.sharedData.BASE_URL}/login`,{"username":username,"password":password})
         .pipe(map(user => {
@@ -52,5 +54,13 @@ export class UserService {
     }
     public get getCurrentUserValue(): User {
       return this.currentUserSubject.value;
+  }
+  getHeaderOption():any{
+    return this.options = {
+      headers:new HttpHeaders({
+        'Content-Type':'application/json',
+        'Authorization':`Bearer:${this.sharedData.getLoggedInUser().token}`
+      })
+    }
   }
 }

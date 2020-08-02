@@ -19,18 +19,17 @@
             <input type="number" name="price" class="form-control" formControlName="price" placeholder="Irja be a termék árát.">
           </div>
           <div class="clearfix">
-          <div class="form-group float left">
-            <input
-            style="display: none"
-            type="file" (change)="onFileChanged($event)"
-            #fileInput>
-          <button class="btn btn-secondary"  (click)="fileInput.click()">Kép kiválasztása</button>
+            <div class="custom-file float-left">
+              <input type="file" name="selectedFile"  (change)="onFileChanged($event)" class="custom-file-input" id="selectedFile" value="Keresés">
+              <label class="custom-file-label" #fileInput for="customFile">Fájl kiválasztása</label>
+            </div>
+          </div>
           <span *ngIf="selectedFile" style="margin-left: 10px;">{{selectedFile.name}}</span>
           <input type="submit" class="btn btn-primary float-right"  (click)="addProduct()" value="Hozzáadás">
-        </div>
-        </div>
+
+    
         </form>
       </div>
     </div>
   </div>
-</div>
+
