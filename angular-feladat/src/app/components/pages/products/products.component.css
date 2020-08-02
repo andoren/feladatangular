@@ -5,3 +5,7 @@
 .row{
   justify-content: inherit;
 }
+.product-item {
+  padding:0px !important;
+  margin: 10px;
+}
