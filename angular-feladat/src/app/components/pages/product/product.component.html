@@ -1,0 +1,30 @@
+<div class="productcontainer">
+ 
+<div style="position: relative;">
+    
+    <BR CLEAR="left"/>
+    <img ALIGN="left" class="col-sm-4 mr-3 mr-sm-0 pr-3 pr-sm-3"  src={{product.imagepath}} width="300" height="300">
+    <div *ngIf="product.issold"  class="large sold" >ELADVA</div>
+  </div>
+
+    <div class="col-sm-11 clearfix">
+      <div>
+        <h3>Megnevezés: {{product.name}}</h3>
+      </div>
+      <h3 class="mt-2">Termék leírása: </h3>
+      <h6 class="mt-1 text-justify">{{product.description}}</h6>
+      <div style="text-align: end; "class="text-muted clear-fix" >
+        <span class="float-left">Feltöltötte: {{product.owner.username}}</span> <span class="float-right">Dátum: {{product.created_date | date:'yyyy-MM-dd'}}</span>
+      </div>
+      <br>
+      <div>
+        <h4>Ára: {{product.price | currency:'HUF':'symbol':'4.0-2':'hu'}}</h4>
+      </div>
+      <div *ngIf="!product.issold && notMine()" class="float-right">
+      <button (click) = "buyProduct()" style="margin-top: 10px;" class="btn btn-primary">
+        Megvásárol
+      </button>
+    </div>
+    </div>
+
+</div>

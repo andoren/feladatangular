@@ -1,0 +1,12 @@
+.productcontainer{
+  margin: 30px 10px 30px 10px;
+}
+
+.sold{
+  position: absolute; 
+  margin-top: 90px; 
+  margin-left: 40px; 
+  transform: rotate(45deg); 
+  font-size: 5rem;
+  color: #00000047;
+}

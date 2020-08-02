@@ -22,6 +22,6 @@ export class ProductItemComponent implements OnInit {
       this.route.navigate(['product/'+this.product.id]);
   }
   productIsMine():boolean{
-    return this.product.owner.id == this.shared.getLoggedInUser().id;
+    return this.shared.getLoggedInUser() && this.product.owner.id == this.shared.getLoggedInUser().id;
   }
 }

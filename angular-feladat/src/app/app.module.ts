@@ -14,6 +14,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NewproductComponent } from './components/pages/newproduct/newproduct.component';
 import { NonauthproductsComponent } from './components/pages/nonauthproducts/nonauthproducts.component';
 import { MyproductsComponent } from './components/pages/myproducts/myproducts.component';
+import { ProductComponent } from './components/pages/product/product.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MyproductsComponent } from './components/pages/myproducts/myproducts.co
     FooterComponent,
     NewproductComponent,
     NonauthproductsComponent,
-    MyproductsComponent
+    MyproductsComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,

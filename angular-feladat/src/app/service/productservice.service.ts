@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import{Product} from 'src/app/models/Product';
 import { Shared } from '../models/Shared';
 import { JsonPipe } from '@angular/common';
+import { stringify } from '@angular/compiler/src/util';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,9 @@ export class Productservice{
   }
   getProductsByUserId():Observable<any> {
     return this.http.get<Product[]>(`${this.sharedData.PROTECTED_BASE_URL}/getproductsbyuserid/${this.sharedData.getLoggedInUser().id}`,this.getHeaderOption());
+  }
+  getProductById(id:number):Observable<any>{
+    return this.http.get<Product>(`${this.sharedData.PUBLIC_BASE_URL}/getproductbyid/${id}`);
   }
   getHeaderOption():any{
     return this.options = {
