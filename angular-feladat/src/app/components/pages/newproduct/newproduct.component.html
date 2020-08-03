@@ -12,22 +12,18 @@
           </div>
           <div class="form-group">
             <label for="description">Leírás:</label>
-            <input type="text" name="description" class="form-control" formControlName="description" placeholder="A termék leírása">
+            <textarea style="min-height: 150px;"  name="description" class="form-control" formControlName="description" placeholder="A termék leírása"></textarea>
           </div>
           <div class="form-group">
             <label for="price">Ára:</label>
             <input type="number" name="price" class="form-control" formControlName="price" placeholder="Irja be a termék árát.">
           </div>
           <div class="clearfix">
-            <div class="custom-file float-left">
-              <input type="file" name="selectedFile"  (change)="onFileChanged($event)" class="custom-file-input" id="selectedFile" value="Keresés">
-              <label class="custom-file-label" #fileInput for="customFile">Fájl kiválasztása</label>
-            </div>
+            <input  name="selectedFile"  (change)="onFileChanged($event)" class="custom-file-input" id="selectedFile"  type="file" class="form-control-file border">
+     
           </div>
-          <span *ngIf="selectedFile" style="margin-left: 10px;">{{selectedFile.name}}</span>
-          <input type="submit" class="btn btn-primary float-right"  (click)="addProduct()" value="Hozzáadás">
 
-    
+          <input type="submit" class="btn btn-primary float-right mt-sm-3"  (click)="addProduct()" value="Termék hozzáadása">
         </form>
       </div>
     </div>
