@@ -59,7 +59,6 @@ export class HeaderComponent implements OnInit {
       let tempItems = [
         {'text':'Főoldal','route':'/'},
         {'text':'Kapcsolat','route':'contact'},
-        {'text':'Segítség','route':'/'}
       ];
       return tempItems;
   }

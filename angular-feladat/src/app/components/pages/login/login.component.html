@@ -1,9 +1,15 @@
 <div style="padding-top: 20px;">
+
   <div>
-    <h3 >Jelentkezzen be!</h3>
-  </div>
-  <div>
-    <form (ngSubmit)="logIn()">
+    <div style="display: flex; justify-content: center;">
+      <h3 >Kérem jelentkezzen be az oldalra, hogy több funkciót érjen el!</h3>
+    </div>
+    <div class="m-sm-2 mt-sm-4" style="display: flex; justify-content: center;">
+      <img  width="300" height="300" src="../../../../assets/login.png">
+     
+    </div>
+    <div class="d-flex justify-content-center">
+    <form style="width: 80%;" class="mt-sm-4" (ngSubmit)="logIn()">
       <div class="form-group">
         <label for="username">Felhasználónév:</label>
         <input type="email" name="username" class="form-control" [(ngModel)] = "username"  placeholder="Írja be a felhasználónevét...">
@@ -17,13 +23,15 @@
           <span >Hibás felhasználónév vagy jelszó!</span>
         </div>
     </form>   
-    <div>
-      <div class="d-flex  justify-content-center links"style="padding-top:20px">
-         Nincs még fiókja?&nbsp;
-         <a  routerLink="/register">Regisztráció</a>
-      </div>
-      <div class="d-flex justify-content-center" style="padding-bottom:20px">
-        <a href="#">Elfelejtette a jelszavát?</a>
-      </div>
+
+  </div>
+  <div>
+    <div class="d-flex  justify-content-center links"style="padding-top:20px">
+       Nincs még fiókja?&nbsp;
+       <a  routerLink="/register">Regisztráció</a>
     </div>
+    <div class="d-flex justify-content-center" style="padding-bottom:20px">
+      <a href="#">Elfelejtette a jelszavát?</a>
+    </div>
+  </div>
   </div>

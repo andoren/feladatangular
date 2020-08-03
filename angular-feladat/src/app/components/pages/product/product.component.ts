@@ -28,7 +28,8 @@ export class ProductComponent implements OnInit {
     this.productService.buyProduct(this.product);
   }
   isAdmin():boolean{
-    return this.shared.getLoggedInUser().role =="admin" && !this.product.isAccapted;
+    console.log(this.shared.getLoggedInUser())
+    return this.shared.getLoggedInUser() && this.shared.getLoggedInUser().role =="admin" && !this.product.isAccapted;
   }
   authProduct():void{
     this.productService.authProduct(this.product);
