@@ -58,8 +58,7 @@ export class HeaderComponent implements OnInit {
    private createDefaultMenu():MenuItem[]{
       let tempItems = [
         {'text':'Főoldal','route':'/'},
-        {'text':'Keresés','route':'/'},
-        {'text':'Kapcsolat','route':'/'},
+        {'text':'Kapcsolat','route':'contact'},
         {'text':'Segítség','route':'/'}
       ];
       return tempItems;

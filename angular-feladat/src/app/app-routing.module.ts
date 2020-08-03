@@ -9,6 +9,7 @@ import { NonauthproductsComponent } from './components/pages/nonauthproducts/non
 import {MyproductsComponent} from './components/pages/myproducts/myproducts.component'
 import { ProductComponent } from './components/pages/product/product.component';
 import {UsersComponent} from './components/pages/users/users.component'
+import { ContactComponent } from './components/pages/contact/contact.component';
 const routes: Routes = [
   {path:'',component:ProductsComponent},
   {path:'login',component:LoginComponent},
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path:'notauthproducts',component:NonauthproductsComponent},
   {path:'myproducts',component:MyproductsComponent},
   {path:'product/:id',component:ProductComponent},
-  {path:'getusers',component:UsersComponent}
+  {path:'getusers',component:UsersComponent},
+  {path:'contact',component:ContactComponent}
 ];
 
 @NgModule({

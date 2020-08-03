@@ -17,6 +17,8 @@ import { MyproductsComponent } from './components/pages/myproducts/myproducts.co
 import { ProductComponent } from './components/pages/product/product.component';
 import { UsersComponent } from './components/pages/users/users.component';
 import { UserItemComponent } from './components/pages/users/user-item/user-item.component';
+import { ContactComponent } from './components/pages/contact/contact.component';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { UserItemComponent } from './components/pages/users/user-item/user-item.
     MyproductsComponent,
     ProductComponent,
     UsersComponent,
-    UserItemComponent
+    UserItemComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,7 @@ import { UserItemComponent } from './components/pages/users/user-item/user-item.
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
+
   ],
   providers: [],
 
