@@ -8,8 +8,11 @@
   </div>
 
     <div class="col-sm-11 clearfix">
-      <div>
+      <div class="float-left">
         <h3>Megnevezés: {{product.name}}</h3>
+      </div>
+      <div *ngIf="isAdmin()" class="float-right">
+        <button (click)="authProduct()" class="btn btn-success">Engedélyez</button>
       </div>
       <h3 class="mt-2">Termék leírása: </h3>
       <h6 class="mt-1 text-justify">{{product.description}}</h6>

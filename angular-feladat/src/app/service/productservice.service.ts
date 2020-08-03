@@ -37,6 +37,11 @@ export class Productservice{
       this.router.navigate(["/"]);
     });
   }
+  authProduct(product:Product):void{
+    this.http.post(`${this.sharedData.PROTECTED_BASE_URL}/authproduct`,product,this.getHeaderOption()).subscribe(()=>{
+      this.router.navigate(["notauthproducts"]);
+    });
+  }
   getHeaderOption():any{
     return this.options = {
       headers:new HttpHeaders({

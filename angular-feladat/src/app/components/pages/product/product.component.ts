@@ -27,4 +27,10 @@ export class ProductComponent implements OnInit {
   buyProduct():void{
     this.productService.buyProduct(this.product);
   }
+  isAdmin():boolean{
+    return this.shared.getLoggedInUser().role =="admin";
+  }
+  authProduct():void{
+    this.productService.authProduct(this.product);
+  }
 }
