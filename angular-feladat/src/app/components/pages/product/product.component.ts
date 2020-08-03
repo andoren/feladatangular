@@ -25,6 +25,6 @@ export class ProductComponent implements OnInit {
       return this.product.id != this.shared.getLoggedInUser().id;
   }
   buyProduct():void{
-    
+    this.productService.buyProduct(this.product);
   }
 }
