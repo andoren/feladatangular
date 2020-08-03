@@ -22,13 +22,13 @@ export class ProductComponent implements OnInit {
     
   }
   notMine():boolean{
-      return this.product.id != this.shared.getLoggedInUser().id;
+      return this.product.owner.id != this.shared.getLoggedInUser().id;
   }
   buyProduct():void{
     this.productService.buyProduct(this.product);
   }
   isAdmin():boolean{
-    return this.shared.getLoggedInUser().role =="admin";
+    return this.shared.getLoggedInUser().role =="admin" && !this.product.isAccapted;
   }
   authProduct():void{
     this.productService.authProduct(this.product);

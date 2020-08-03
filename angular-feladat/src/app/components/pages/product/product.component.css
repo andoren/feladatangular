@@ -1,12 +1,19 @@
 .productcontainer{
-  margin: 30px 10px 30px 10px;
+  padding-top: 30px;
+  height: 92%;
 }
 
 .sold{
   position: absolute; 
-  margin-top: 90px; 
-  margin-left: 40px; 
+  max-width: 0;
+  top: 40%; /* Adjust this value to move the positioned div up and down */
+  text-align: center;
+  width: 60%; 
+  top:0;
   transform: rotate(45deg); 
   font-size: 5rem;
   color: #00000047;
+}
+.bottom-info{
+  width: 100%;
 }
