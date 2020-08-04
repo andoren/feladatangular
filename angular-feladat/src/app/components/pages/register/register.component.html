@@ -6,7 +6,7 @@
         <div >
           <h3>Regisztráljon be!</h3>
         </div>
-        <form [formGroup]="userForm" (click)="register()" #formDir="ngForm" >
+        <form [formGroup]="userForm" #formDir="ngForm" >
           <div class="form-group">
             <label for="realname">Teljes név:</label>
             <input type="text" required class="form-control" formControlName="realname" placeholder="Írja be a nevét...">
@@ -44,7 +44,7 @@
             <label for="email">E-mail cím:</label>
             <input type="email" name="email" class="form-control" formControlName="email" placeholder="Írja be az e-mail címét...">
           </div>
-          <input type="submit" class="btn btn-primary btn-block" value="Regisztrálás">
+          <input type="submit" class="btn btn-primary btn-block" (click)="register()"  value="Regisztrálás">
 
         </form>
       </div>

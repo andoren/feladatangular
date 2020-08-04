@@ -1,1 +1,50 @@
-<p>modifyuser works!</p>
+<h3 class="pagetitle">Felhasználó módosítása: {{user.username}}</h3>
+<div class="">
+    <div>
+      <div style="background-color: white; padding: 20px;" >
+    
+          <form [formGroup]="userForm"  #formDir="ngForm" >
+            <div class="form-group" >
+              <label for="realname">Teljes név:</label>
+              <input type="text" class="form-control" name="realname" formControlName="realname" value="{{user.realname}}" placeholder="Írja be a nevét...">
+              <div *ngIf="realname.invalid && (realname.dirty || realname.touched)"  class="alert alert-danger"> 
+                <span>Hibás név!</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="username">Felhasználónév:</label>
+              <input type="text" name="username" class="form-control" formControlName="username" value="{{user.username}}" placeholder="Írja be a felhasználónevét...">
+              <div *ngIf="username.invalid && (username.dirty || username.touched)"  class="alert alert-danger"> 
+                <span>Hibás felhasználónév!</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password">Jelszó:</label>
+              <input type="password" name="password" class="form-control" formControlName="password" placeholder="Ha a jelszót üresen hagyja akkor az nem kerül módosításra.">
+              <div *ngIf="password.invalid && (password.dirty || password.touched)"  class="alert alert-danger"> 
+                <span>Hibás jelszó!</span>
+              </div>
+            </div>
+    
+            <div class="form-group">
+              <label for="email">E-mail cím:</label>
+              <input type="email" name="email" class="form-control" formControlName="email" value="{{user.email}}" placeholder="Írja be az e-mail címét...">
+            </div>
+            <div class="form-group">
+                <label for="role">Felhasználó típsua:</label>
+                
+                <select [ngModel]="selectedRole" class="form-control"  formControlName="role">
+                    <option  disabled [ngValue]="undefined">Szerepkör választása</option>
+                    
+                    <option *ngFor="let role of roles" [ngValue]="role">{{role.name}}</option>
+                </select>
+
+            </div>
+            <input type="submit" class="btn btn-primary btn-block" (click)="modifyUser()" value="Módosítás">
+  
+          </form>
+        
+      </div>
+    </div>
+</div>
+  
