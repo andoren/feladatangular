@@ -19,6 +19,7 @@ import { UsersComponent } from './components/pages/users/users.component';
 import { UserItemComponent } from './components/pages/users/user-item/user-item.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { SumpageComponent } from './components/pages/sumpage/sumpage.component';
+import { ModifyuserComponent } from './components/pages/users/modifyuser/modifyuser.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { SumpageComponent } from './components/pages/sumpage/sumpage.component';
     UsersComponent,
     UserItemComponent,
     ContactComponent,
-    SumpageComponent
+    SumpageComponent,
+    ModifyuserComponent
   ],
   imports: [
     BrowserModule,

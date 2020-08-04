@@ -2,7 +2,7 @@
   <div style="padding-top: 10px;" >
     <h3>Felhasználók</h3>
     <ul class="list-group list-group-flush" >
-      <app-user-item style="margin:2px" class="list-group-item" *ngFor="let user of users" 
+      <app-user-item (deleteUser)="deleteUser($event)" style="margin:2px" class="list-group-item" *ngFor="let user of users" 
       [user]="user"></app-user-item>
     </ul>
   </div>

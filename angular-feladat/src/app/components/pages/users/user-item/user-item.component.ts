@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/models/User';
+import { UserService } from 'src/app/service/userservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-item',
@@ -9,16 +11,16 @@ import { User } from 'src/app/models/User';
 
 export class UserItemComponent implements OnInit {
   @Input() user:User;
-  constructor() { }
+  @Output() deleteUser:EventEmitter<User>=new EventEmitter();
+  constructor(private router:Router ,private userService:UserService) { }
 
   ngOnInit(): void {
   }
 
-  modifyUser():void{
 
-  }
 
-  deleteUser(valami:any):any{
-
+  onDeleteUser(user):void{
+      this.deleteUser.emit(user);
+      console.log("Emited");
   }
 }

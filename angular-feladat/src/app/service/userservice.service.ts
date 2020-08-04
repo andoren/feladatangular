@@ -29,6 +29,12 @@ export class UserService {
    getUsers():Observable<any>{
      return this.http.get<User[]>(`${this.sharedData.PROTECTED_BASE_URL}/getusers`,this.getHeaderOption());
    }
+   modifyUser(user:User):Observable<any>{
+     return this.http.post(`${this.sharedData.PROTECTED_BASE_URL}/modifyuser`,user,this.getHeaderOption());
+   }
+   deleteUser(user:User):Observable<any>{
+     return this.http.delete(`${this.sharedData.PROTECTED_BASE_URL}/deleteuser/${user.id}`,this.getHeaderOption());
+   }
    login(username, password):Observable<any> {
     return this.http.post<User>(`${this.sharedData.BASE_URL}/login`,{"username":username,"password":password})
         .pipe(map(user => {
