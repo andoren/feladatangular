@@ -18,6 +18,7 @@ import { ProductComponent } from './components/pages/product/product.component';
 import { UsersComponent } from './components/pages/users/users.component';
 import { UserItemComponent } from './components/pages/users/user-item/user-item.component';
 import { ContactComponent } from './components/pages/contact/contact.component';
+import { SumpageComponent } from './components/pages/sumpage/sumpage.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ContactComponent } from './components/pages/contact/contact.component';
     ProductComponent,
     UsersComponent,
     UserItemComponent,
-    ContactComponent
+    ContactComponent,
+    SumpageComponent
   ],
   imports: [
     BrowserModule,

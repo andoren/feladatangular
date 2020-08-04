@@ -10,6 +10,7 @@ import {MyproductsComponent} from './components/pages/myproducts/myproducts.comp
 import { ProductComponent } from './components/pages/product/product.component';
 import {UsersComponent} from './components/pages/users/users.component'
 import { ContactComponent } from './components/pages/contact/contact.component';
+import { SumpageComponent } from './components/pages/sumpage/sumpage.component';
 const routes: Routes = [
   {path:'',component:ProductsComponent},
   {path:'login',component:LoginComponent},
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path:'myproducts',component:MyproductsComponent},
   {path:'product/:id',component:ProductComponent},
   {path:'getusers',component:UsersComponent},
-  {path:'contact',component:ContactComponent}
+  {path:'contact',component:ContactComponent},
+  {path:'sumpage/:id',component:SumpageComponent}
 ];
 
 @NgModule({
