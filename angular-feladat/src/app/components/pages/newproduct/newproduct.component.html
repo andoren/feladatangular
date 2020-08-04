@@ -1,4 +1,7 @@
-<div class="">
+<div *ngIf="getIsLoading()" class="spinner-wrapper">
+  <app-spinner text="Termék hozzáadása"></app-spinner>
+</div>
+<div>
   <div class="cardcont">
     <div style="background-color: white; padding: 20px;" >
       <div >

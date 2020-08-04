@@ -12,13 +12,17 @@ import { Shared } from 'src/app/models/Shared';
 export class ProductComponent implements OnInit {
   id:number;
   product:Product;
+  _isLoading:boolean;
   constructor(private route:ActivatedRoute, private productService:Productservice,private  shared:Shared) { }
 
   ngOnInit(): void {
+    this.setIsLoading(true);
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.productService.getProductById(this.id).subscribe(product=>{{
       this.product = product;      
-    }});
+    }},()=>{},()=>{
+      this.setIsLoading(false);
+    });
     
   }
   notMine():boolean{
@@ -32,6 +36,15 @@ export class ProductComponent implements OnInit {
     return this.shared.getLoggedInUser() && this.shared.getLoggedInUser().role =="admin" && !this.product.isAccapted;
   }
   authProduct():void{
+    this.setIsLoading(true);
     this.productService.authProduct(this.product);
+    this.setIsLoading(false);
+  }
+  setIsLoading(bool:boolean):void{
+    this._isLoading = bool;
+  }
+  getIsLoading():boolean{
+
+    return this._isLoading;
   }
 }

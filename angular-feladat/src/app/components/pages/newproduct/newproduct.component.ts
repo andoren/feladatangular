@@ -12,7 +12,7 @@ import { ToastService } from 'src/app/service/toast.service';
   styleUrls: ['./newproduct.component.css']
 })
 export class NewproductComponent implements OnInit {
-
+  _isLoading:boolean;
   productname:string;
   description:string;
   price:number;
@@ -50,6 +50,7 @@ export class NewproductComponent implements OnInit {
   }
 
   addProduct() {
+    this.setIsLoading(true);
     let product:Product= new Product();
     product.imagepath = "https://picsum.photos/300/300.jpg";
     product.name = this.productForm.get("productname").value;
@@ -66,6 +67,15 @@ export class NewproductComponent implements OnInit {
     },(error)=>{
     
       this.toastService.showError("Hiba történt a termék hozzáadása közben. Sajnáljuk !:(","Termék hozzáadása");
+    },()=>{
+      this.setIsLoading(false);
     });
+  }
+  setIsLoading(bool:boolean):void{
+    this._isLoading = bool;
+  }
+  getIsLoading():boolean{
+
+    return this._isLoading;
   }
 }
