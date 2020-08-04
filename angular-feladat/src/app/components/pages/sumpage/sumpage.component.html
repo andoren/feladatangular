@@ -3,13 +3,18 @@
     <h4 class="mb-sm-2">Terméked adatai:</h4>
     <div class="row">
         <div class="col-sm-4">
-            <img src={{product.imagepath}} width="100%">
+            <img class="shadow-lg rounded" src={{product.imagepath}} width="100%">
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-8 ">
             <h5>{{product.name}}</h5>
             <h6>Leírás: </h6>
             <p style="text-align: justify;">{{product.description}}</p>
-            <p>Feltöltve: {{product.created_date | date:'yyyy-MM-dd'}}</p>
+            <div class="d-flex">
+                <p>Feltöltve: {{product.created_date | date:'yyyy-MM-dd'}}</p>
+               
+                <p class="ml-auto">Vásárlás időpontja: {{product.sold_date | date:'yyyy-MM-dd'}}</p>
+                
+            </div>
             <h5>Ár: {{product.price | currency:'HUF':'symbol':'4.0-2':'hu'}}</h5>
         </div>
     </div>
