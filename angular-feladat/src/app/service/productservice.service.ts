@@ -6,6 +6,7 @@ import { Shared } from '../models/Shared';
 import { JsonPipe } from '@angular/common';
 import { stringify } from '@angular/compiler/src/util';
 import { Router } from '@angular/router';
+import { ToastService } from './toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 
 export class Productservice{
 
-  constructor(private http:HttpClient, private sharedData:Shared, private router:Router) { 
+  constructor(private http:HttpClient, private sharedData:Shared, private router:Router, private toastService:ToastService) { 
 
   }
   options={};
@@ -34,12 +35,17 @@ export class Productservice{
   }
   buyProduct(product:Product):void{
     this.http.post(`${this.sharedData.PROTECTED_BASE_URL}/buyproduct`,product,this.getHeaderOption()).subscribe(()=>{
+      this.toastService.showSuccess(`Sikeresen megvásárolta a terméket ${product.price} Ft-ért ! Hamarosan felveszi önnel a kapcsolatott a termék tulajdonosa.(${product.owner.realname})`,"Vásárlás");
       this.router.navigate(["/"]);
+    },error=>{
+      this.toastService.showError("Hiba történt a vásárlás közben. Sajnáljuk.","Vásárlás");
     });
   }
   authProduct(product:Product):void{
-    this.http.post(`${this.sharedData.PROTECTED_BASE_URL}/authproduct`,product,this.getHeaderOption()).subscribe(()=>{
+    this.http.post(`${this.sharedData.PROTECTED_BASE_URL}/authproduct`,product,this.getHeaderOption()).subscribe(()=>{this.toastService.showSuccess(`Sikeresen engedélyezte a "${product.name}" terméket.`,"Termék engedélyezése");
       this.router.navigate(["notauthproducts"]);
+    },error=>{
+      this.toastService.showError("Hiba történt a termék engedélyezése közben. Sajnáljuk.","Termék engedélyezése");
     });
   }
   getHeaderOption():any{

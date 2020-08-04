@@ -5,6 +5,7 @@ import { Observable,BehaviorSubject } from 'rxjs';
 import {Shared} from '../models/Shared';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import {ToastService} from 'src/app/service/toast.service'
 const httpOptions={
   headers:new HttpHeaders({
     'Content-Type':'application/json',
@@ -21,7 +22,7 @@ export class UserService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-   constructor(private http:HttpClient, private router:Router) {
+   constructor(private http:HttpClient, private router:Router, private toastService:ToastService) {
       this.sharedData = new Shared();
       this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
       this.currentUser = this.currentUserSubject.asObservable();
@@ -33,7 +34,7 @@ export class UserService {
      return this.http.post(`${this.sharedData.PROTECTED_BASE_URL}/modifyuser`,user,this.getHeaderOption());
    }
    deleteUser(user:User):Observable<any>{
-     return this.http.delete(`${this.sharedData.PROTECTED_BASE_URL}/deleteuser/${user.id}`,this.getHeaderOption());
+     return this.http.delete(`${this.sharedData.PROTECTED_BASE_URL}/deleteuser/${user.id}`,this.getHeaderOption())
    }
    getUserById(id:number):Observable<any>{
      return this.http.get(`${this.sharedData.PROTECTED_BASE_URL}/getuserbyid/${id}`,this.getHeaderOption());
@@ -42,7 +43,7 @@ export class UserService {
     return this.http.post<User>(`${this.sharedData.BASE_URL}/login`,{"username":username,"password":password})
         .pipe(map(user => {
             if(user.token && user.token !== undefined && user.token !== null)localStorage.setItem('user', JSON.stringify(user));
-
+            this.toastService.showSuccess("Sikeres bejelentkezés!","Bejelentkezés");
             this.currentUserSubject.next(user);
             return user;
         }));
@@ -51,7 +52,8 @@ export class UserService {
       return this.http.post<User>(`${this.sharedData.BASE_URL}/register`,user).pipe(
         map(user =>{
           if(user.token !== null)localStorage.setItem('user', JSON.stringify(user));
-          this.currentUserSubject.next(user);
+            this.toastService.showSuccess("Sikeres regisztráció!","Regisztráció");
+            this.currentUserSubject.next(user);
           return user;
         })
       )
@@ -60,6 +62,7 @@ export class UserService {
       localStorage.removeItem('user');
       this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
       this.router.navigate(["login"]);
+      this.toastService.showInfo("Sikeres kijelentkezés!","Kijelentkezés");
     }
     public get getCurrentUserValue(): User {
       return this.currentUserSubject.value;

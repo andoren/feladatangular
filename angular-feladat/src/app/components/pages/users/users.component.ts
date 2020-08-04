@@ -10,16 +10,24 @@ import { UserService } from 'src/app/service/userservice.service';
 export class UsersComponent implements OnInit {
   users:User[];
   constructor(private userSerivce:UserService) { }
-
+  _isLoading:boolean;
   ngOnInit(): void {
+    this.setIsLoading(true);
     this.userSerivce.getUsers().subscribe(users =>{
       this.users = users;
+      this.setIsLoading(false);
     });
   }
   deleteUser(user:User){
-    console.log("catched");
+
     this.userSerivce.deleteUser(user).subscribe(()=>{
       this.users = this.users.filter(u=>u.id!==user.id);
     });
+  }
+  setIsLoading(bool:boolean):void{
+    this._isLoading = bool;
+  }
+  getIsLoading():boolean{
+    return this._isLoading;
   }
 }

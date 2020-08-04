@@ -20,8 +20,8 @@ import { UserItemComponent } from './components/pages/users/user-item/user-item.
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { SumpageComponent } from './components/pages/sumpage/sumpage.component';
 import { ModifyuserComponent } from './components/pages/users/modifyuser/modifyuser.component';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 @NgModule({
   declarations: [
@@ -50,7 +50,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
 
   ],
   providers: [],
