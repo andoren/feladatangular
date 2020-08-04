@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from 'src/app/service/userservice.service';
 import { ActivatedRoute } from '@angular/router';
 import * as sha1 from 'js-sha1';
+import { ToastService } from 'src/app/service/toast.service';
 
 @Component({
   selector: 'app-modifyuser',
@@ -16,8 +17,9 @@ export class ModifyuserComponent implements OnInit {
   passwordtemp:string = "";
   roles:any[];
   selectedRole:any = {};
+  _isLoading:boolean;
   userForm:FormGroup = new FormGroup({});
-  constructor(private userService:UserService, private route:ActivatedRoute) {
+  constructor(private userService:UserService, private route:ActivatedRoute, private toastService:ToastService) {
       this.roles = [{'role':"admin",'name':'Adminisztrátor'},{'role':"user",'name':'Felhasználó'}];
       this.userForm = new FormGroup({
         'realname':new FormControl(this.user.realname,[
@@ -45,10 +47,15 @@ export class ModifyuserComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.setIsLoading(true);
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.userService.getUserById(this.id).subscribe(user=>{
         this.user = user;  
         this.selectedRole = this.roles.filter(r => r.role == user.role)[0];
+    },()=>{
+      this.toastService.showError("Hiba az adatok letöltése közben.","Letöltési hiba");
+    },()=>{
+      this.setIsLoading(false);
     });
   
 }
@@ -63,13 +70,25 @@ invalidPassword():boolean{
 }
 
 modifyUser():void{
+  this.setIsLoading(true);
   if(this.passwordtemp.length> 0) this.user.password = sha1(this.password.value);
   this.user.email = this.email.value;
   this.user.realname = this.realname.value;
-  this.user.role = this.role.value;
+  this.user.role = this.role.value.role;
   this.user.username = this.username.value;
   this.userService.modifyUser(this.user).subscribe(()=>{
-    console.log("sikeres módosítás");
+    this.toastService.showSuccess("Sikeresen módosította a felhasználót","Felhasználó módosítása");
+  },(error)=>{
+    console.log(error);
+    this.toastService.showError("Hiba a felhasználó módosítása közben. Sajnáljuk ! :(","Felhasználó módosítása");
+  },()=>{
+    this.setIsLoading(false);
   });
+}
+setIsLoading(bool:boolean):void{
+  this._isLoading = bool;
+}
+getIsLoading():boolean{
+  return this._isLoading;
 }
 }

@@ -43,7 +43,7 @@ export class UserService {
     return this.http.post<User>(`${this.sharedData.BASE_URL}/login`,{"username":username,"password":password})
         .pipe(map(user => {
             if(user.token && user.token !== undefined && user.token !== null)localStorage.setItem('user', JSON.stringify(user));
-            this.toastService.showSuccess("Sikeres bejelentkezés!","Bejelentkezés");
+          
             this.currentUserSubject.next(user);
             return user;
         }));
