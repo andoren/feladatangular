@@ -2,11 +2,20 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/models/Product';
 import { Productservice } from 'src/app/service/productservice.service';
 import { Shared } from 'src/app/models/Shared';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.css'],
+  animations: [
+    trigger('fade', [ 
+      transition('void => *', [
+        style({ opacity: 0 }), 
+        animate(2000, style({opacity: 1}))
+      ]) 
+    ])
+  ]
 })
 export class ProductsComponent implements OnInit {
   @Input() currentPage:string;

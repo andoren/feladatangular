@@ -12,6 +12,7 @@ import {UsersComponent} from './components/pages/users/users.component'
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { SumpageComponent } from './components/pages/sumpage/sumpage.component';
 import { ModifyuserComponent } from './components/pages/users/modifyuser/modifyuser.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 const routes: Routes = [
   {path:'',component:ProductsComponent},
   {path:'login',component:LoginComponent},
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path:'getusers',component:UsersComponent},
   {path:'contact',component:ContactComponent},
   {path:'sumpage/:id',component:SumpageComponent},
-  {path:'modifyuser/:id',component:ModifyuserComponent}
+  {path:'modifyuser/:id',component:ModifyuserComponent},
+  {path:'spinner',component:SpinnerComponent}
 ];
 
 @NgModule({

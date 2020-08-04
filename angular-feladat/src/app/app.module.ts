@@ -21,7 +21,8 @@ import { ContactComponent } from './components/pages/contact/contact.component';
 import { SumpageComponent } from './components/pages/sumpage/sumpage.component';
 import { ModifyuserComponent } from './components/pages/users/modifyuser/modifyuser.component';
 
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,14 +41,16 @@ import { ModifyuserComponent } from './components/pages/users/modifyuser/modifyu
     UserItemComponent,
     ContactComponent,
     SumpageComponent,
-    ModifyuserComponent
+    ModifyuserComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
 
   ],
   providers: [],
