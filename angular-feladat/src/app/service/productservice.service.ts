@@ -38,14 +38,14 @@ export class Productservice{
       this.toastService.showSuccess(`Sikeresen megvásárolta a terméket ${product.price} Ft-ért ! Hamarosan felveszi önnel a kapcsolatott a termék tulajdonosa.(${product.owner.realname})`,"Vásárlás");
       this.router.navigate(["/"]);
     },error=>{
-      this.toastService.showError("Hiba történt a vásárlás közben. Sajnáljuk.","Vásárlás");
+      this.toastService.showError(`Hiba történt a vásárlás közben. A hiba oke: ${error.error.error} `,"Vásárlás");
     });
   }
   authProduct(product:Product):void{
     this.http.post(`${this.sharedData.PROTECTED_BASE_URL}/authproduct`,product,this.getHeaderOption()).subscribe(()=>{this.toastService.showSuccess(`Sikeresen engedélyezte a "${product.name}" terméket.`,"Termék engedélyezése");
       this.router.navigate(["notauthproducts"]);
     },error=>{
-      this.toastService.showError("Hiba történt a termék engedélyezése közben. Sajnáljuk.","Termék engedélyezése");
+      this.toastService.showError(`Hiba történt a vásárlás közben. A hiba oke: ${error.error.error} `,"Termék engedélyezése");
     });
   }
   getHeaderOption():any{
