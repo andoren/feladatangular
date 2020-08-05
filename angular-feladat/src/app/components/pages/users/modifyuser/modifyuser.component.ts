@@ -52,10 +52,11 @@ export class ModifyuserComponent implements OnInit {
     this.userService.getUserById(this.id).subscribe(user=>{
         this.user = user;  
         this.selectedRole = this.roles.filter(r => r.role == user.role)[0];
-    },()=>{
-      this.toastService.showError("Hiba az adatok letöltése közben.","Letöltési hiba");
-    },()=>{
+        this.setIsLoading(false);
+    },(error)=>{
       this.setIsLoading(false);
+      this.toastService.showError(`Hiba az oldal letöltése közben. Az oka: ${error.error.error}`,"Hiba a letöltés közben.");
+
     });
   
 }
@@ -77,12 +78,12 @@ modifyUser():void{
   this.user.role = this.role.value.role;
   this.user.username = this.username.value;
   this.userService.modifyUser(this.user).subscribe(()=>{
-    this.toastService.showSuccess("Sikeresen módosította a felhasználót","Felhasználó módosítása");
-  },(error)=>{
-    console.log(error);
-    this.toastService.showError("Hiba a felhasználó módosítása közben. Sajnáljuk ! :(","Felhasználó módosítása");
-  },()=>{
     this.setIsLoading(false);
+    this.toastService.showSuccess("Sikeresen módosította a felhasználót","Felhasználó módosítása");
+    
+  },(error)=>{
+    this.setIsLoading(false);
+    this.toastService.showError(`Hiba a felhasználó módosítása közben. Az oka: ${error.error.error}`,"Felhasználó módosítása");
   });
 }
 setIsLoading(bool:boolean):void{

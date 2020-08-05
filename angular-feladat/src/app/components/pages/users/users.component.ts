@@ -17,8 +17,9 @@ export class UsersComponent implements OnInit {
     this.userSerivce.getUsers().subscribe(users =>{
       this.users = users;
       this.setIsLoading(false);
-    },()=>{
-      this.toastService.showError("Hiba az adatok letöltése közben. Sajnáljuk! :(","Hiba a letöltés közben.");
+    },(error)=>{
+      this.toastService.showError(`Hiba az adatok letöltése közben.  Az oka: ${error.error.error}`,"Hiba a letöltés közben.");
+      this.setIsLoading(false);
     });
   }
   deleteUser(user:User){
@@ -26,10 +27,9 @@ export class UsersComponent implements OnInit {
     this.userSerivce.deleteUser(user).subscribe(()=>{
       this.users = this.users.filter(u=>u.id!==user.id);
       this.toastService.showSuccess(`Sikeresen kitörölted a ${user.username} nevű felhasználót.`,"Felhasználó törlése");
+      this.setIsLoading(false);
     },(error)=>{
-      console.log(error);
-      this.toastService.showError(`Hiba a törlés közben! Sajnáljuk :(`,"Felhasználó törlése");
-    },()=>{
+      this.toastService.showError(`Hiba a felhasználó törlése közben.  Az oka: ${error.error.error}`,"Felhasználó törlése");
       this.setIsLoading(false);
     });
   }

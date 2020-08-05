@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class UserItemComponent implements OnInit {
   @Input() user:User;
   @Output() deleteUser:EventEmitter<User>=new EventEmitter();
-  constructor(private router:Router ,private userService:UserService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
@@ -21,6 +21,5 @@ export class UserItemComponent implements OnInit {
 
   onDeleteUser(user):void{
       this.deleteUser.emit(user);
-      console.log("Emited");
   }
 }
