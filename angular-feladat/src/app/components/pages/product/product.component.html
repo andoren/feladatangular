@@ -15,7 +15,7 @@
       <div class="d-flex">
         <div >
           <h3>Megnevezés: {{product.name}}</h3>
-          <h4 class="mb-sm-2" >Ára: {{product.price | currency:'HUF':'symbol':'4.0-2':'hu'}}</h4>
+          <h4 class="mb-sm-2" >Ára: {{product.price | currency:'HUF':'symbol':'3.0-2':'hu'}}</h4>
         </div>
         <div class="ml-auto p-2" *ngIf="isAdmin()" >
           <button (click)="authProduct()" class="btn btn-success">Engedélyez</button>
