@@ -1,3 +1,4 @@
+import {Address} from 'src/app/models/Address'
 export class User{
     id:number;
     username:string;
@@ -6,6 +7,7 @@ export class User{
     role:string;
     token:string;
     password:string;
+    addresses:Address[];
     getToken():string{
         return this.token;
     }
