@@ -1,8 +1,9 @@
 <div *ngIf="getIsLoading()" class="spinner-wrapper">
     <app-spinner text="töltés"></app-spinner>
   </div>
-<h3 class="pagetitle">Gratulálok megvették a termékedet!</h3>
+  <h3 class="pagetitle pt-sm-2">Gratulálok megvették a termékedet!</h3>
 <div class="ml-sm-2">
+    
     <h4 class="mb-sm-2">Terméked adatai:</h4>
     <div class="row">
         <div class="col-sm-4">
@@ -22,16 +23,23 @@
         </div>
     </div>
 </div>
-<div class="ml-sm-2">
-    <h4 class="mb-sm-2 mt-sm-2">Vásárló adatai:</h4>
-    <div class="row">
-        <div class="col ml-sm-3">
+<div class="mt-sm-4 mb-sm-2 ml-sm-2 mr-sm-2 border-top">
+    
+    <div class="row ">
+        <div class="col ml-sm-2 p-sm-2">
+            <h4 >Vásárló adatai:</h4>
             <h5>Teljes neve:</h5>
             <span>{{product.buyer.realname}}</span>
             <h5>Felhasználóneve:</h5>
             <span>{{product.buyer.username}}</span>
             <h5>E-mail címe:</h5>
             <span>{{product.buyer.email}}</span>
+          
+        </div>
+        <div class="col ml-sm-2 p-sm-2 border-left">
+            <h4 >Szállítás adatai:</h4>
+            <h5>Szállítási mód: </h5>
+            <span>MPL futárszolgálat.</span>
             <h5>Szállítási cím:</h5>
             <span>Magyarország, 1234 Kamu megye Város Kis utca 24/1.  </span>
         </div>
