@@ -28,28 +28,27 @@ export class ProductsComponent implements OnInit {
     
       this.productService.getProducts().subscribe(products=>{
         this.products = products;  
-       
+        this. setIsLoading(false);
       },(error)=>{
-        this.toastService.showError("Hiba az adatok letöltése közben. Sajnáljuk! :(","Hiba a letöltés közben.");
-      },()=>{
+        this.toastService.showError(`Hiba az adatok letöltése közben. ${error.error.error}`,"Hiba a letöltés közben.");
         this. setIsLoading(false);
       });
     }
     else if(this.currentPage === "nonauth"){
       this.productService.getNonAuthProducts().subscribe(products=>{
         this.products = products;
+        this. setIsLoading(false);
       },(error)=>{
-        this.toastService.showError("Hiba az adatok letöltése közben. Sajnáljuk! :(","Hiba a letöltés közben.");
-      },()=>{
+        this.toastService.showError(`Hiba az adatok letöltése közben. ${error.error.error}`,"Hiba a letöltés közben.");
         this. setIsLoading(false);
       });
     } 
     else if(this.currentPage === "private"){
       this.productService.getProductsByUserId().subscribe(products=>{
         this.products = products;
+        this. setIsLoading(false);
       },(error)=>{
-        this.toastService.showError("Hiba az adatok letöltése közben. Sajnáljuk! :(","Hiba a letöltés közben.");
-      },()=>{
+        this.toastService.showError(`Hiba az adatok letöltése közben. ${error.error.error}`,"Hiba a letöltés közben.");
         this. setIsLoading(false);
       });
     }
