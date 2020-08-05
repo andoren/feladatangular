@@ -20,20 +20,17 @@ export class SumpageComponent implements OnInit {
     this.setIsLoading(true);
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.productService.getProductById(this.id).subscribe(product=>{{
-      this.product = product;
-            
-    }},(error)=>{
-      this.toastService.showError("Hiba az oldal letöltése közben. Sajnáljuk ! :(","Hiba a letöltés közben.");
-    },()=>{
+      this.product = product;           
       this.setIsLoading(false);
-    });
-    
+    }},(error)=>{
+      this.setIsLoading(false);
+      this.toastService.showError(`Hiba az oldal letöltése közben. Az oka: ${error.error.error}`,"Hiba a letöltés közben.");
+    });  
   }
   setIsLoading(bool:boolean):void{
     this._isLoading = bool;
   }
   getIsLoading():boolean{
-
     return this._isLoading;
   }
 }
