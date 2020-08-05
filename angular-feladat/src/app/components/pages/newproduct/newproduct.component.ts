@@ -3,7 +3,7 @@ import { Productservice } from 'src/app/service/productservice.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Product } from 'src/app/models/Product';
-import { calcPossibleSecurityContexts } from '@angular/compiler/src/template_parser/binding_parser';
+
 import { ToastService } from 'src/app/service/toast.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class NewproductComponent implements OnInit {
   description:string;
   price:number;
   productForm:FormGroup;
-  constructor(private productService:Productservice, private router:Router, private toastService:ToastService) { }
+  constructor(private productService:Productservice,   private router:Router, private toastService:ToastService) { }
   ngOnInit(): void {
     this.productForm = new FormGroup({
       'productname':new FormControl(this.productname,[
@@ -47,6 +47,7 @@ export class NewproductComponent implements OnInit {
 
   onFileChanged(event) {
     this.selectedFile = event.target.files[0];
+
   }
 
   addProduct() {
