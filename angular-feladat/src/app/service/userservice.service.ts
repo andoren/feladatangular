@@ -6,6 +6,7 @@ import {Shared} from '../models/Shared';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import {ToastService} from 'src/app/service/toast.service'
+import { Address } from '../models/Address';
 const httpOptions={
   headers:new HttpHeaders({
     'Content-Type':'application/json',
@@ -51,8 +52,8 @@ export class UserService {
             return user;
         }));
     }
-    register(user:User):Observable<any>{
-      return this.http.post<User>(`${this.sharedData.BASE_URL}/register`,user).pipe(
+    register(user:User,addresses:Address[]):Observable<any>{
+      return this.http.post<User>(`${this.sharedData.BASE_URL}/register`,{'user':user,'addresses':addresses}).pipe(
         map(user =>{
           if(user.token !== null)localStorage.setItem('user', JSON.stringify(user));
             this.toastService.showSuccess("Sikeres regisztráció!","Regisztráció");

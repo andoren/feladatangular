@@ -1,53 +1,136 @@
 <div class="full d-flex justify-content-center align-items-center">
   <div class="cardcont">
     <div style="background-color: white; padding: 20px;" >
-
-      <div >
-        <div >
           <h3>Regisztráljon be!</h3>
-        </div>
-        <form [formGroup]="userForm" #formDir="ngForm" >
-          <div class="form-group">
-            <label for="realname">Teljes név:</label>
-            <input type="text" required class="form-control" formControlName="realname" placeholder="Írja be a nevét...">
-            <div *ngIf="realname.invalid && (realname.dirty || realname.touched)"  class="alert alert-danger"> 
-              <span>Hibás név!</span>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="username">Felhasználónév:</label>
-            <input type="text" name="username" class="form-control" formControlName="username" placeholder="Írja be a felhasználónevét...">
-            <div *ngIf="username.invalid && (username.dirty || username.touched)"  class="alert alert-danger"> 
-              <span>Hibás felhasználónév!</span>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="password">Jelszó:</label>
-            <input type="password" name="password" class="form-control" formControlName="password" placeholder="Írja be a jelszavát...">
-            <div *ngIf="password.invalid && (password.dirty || password.touched)"  class="alert alert-danger"> 
-              <span>Hibás jelszó!</span>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="password">Jelszó ismétlés:</label>
-            <input type="password" name="password2" class="form-control" formControlName="password2" placeholder="Írja be a jelszavát...">
-            <div *ngIf="password2.invalid && (password2.dirty || password2.touched)"  class="alert alert-danger"> 
-              <span>Hibás jelszó!</span>
-            </div>
-            <div *ngIf="userForm.errors?.mustMatch && (userForm.touched || userForm.dirty)"  class="alert alert-danger"> 
-              <span>A két jelszó nem egyezik meg!</span>
-            </div>
-          </div>
-
-
-          <div class="form-group">
-            <label for="email">E-mail cím:</label>
-            <input type="email" name="email" class="form-control" formControlName="email" placeholder="Írja be az e-mail címét...">
-          </div>
-          <input type="submit" class="btn btn-primary btn-block" (click)="register()"  value="Regisztrálás">
-
-        </form>
-      </div>
     </div>
+    <form [formGroup]="userForm" #formDir="ngForm"  >
+      <div class="form-group">
+        <label for="realname">Teljes név:*</label>
+        <input type="text" required class="form-control" formControlName="realname" placeholder="Írja be a nevét...">
+        <div *ngIf="realname.invalid && (realname.dirty || realname.touched)"  class="alert alert-danger"> 
+            <span>Hibás név!</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="username">Felhasználónév:*</label>
+        <input type="text" name="username" class="form-control" formControlName="username" placeholder="Írja be a felhasználónevét...">
+         <div *ngIf="username.invalid && (username.dirty || username.touched)"  class="alert alert-danger"> 
+           <span>Hibás felhasználónév!</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Jelszó:*</label>
+        <input type="password" name="password" class="form-control" formControlName="password" placeholder="Írja be a jelszavát...">
+        <div *ngIf="password.invalid && (password.dirty || password.touched)"  class="alert alert-danger"> 
+          <span>Hibás jelszó!</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Jelszó ismétlés:*</label>
+        <input type="password" name="password2" class="form-control" formControlName="password2" placeholder="Írja be a jelszavát...">
+        <div *ngIf="password2.invalid && (password2.dirty || password2.touched)"  class="alert alert-danger"> 
+          <span>Hibás jelszó!</span>
+        </div>
+        <div *ngIf="userForm.errors?.mustMatch && (userForm.touched || userForm.dirty)"  class="alert alert-danger"> 
+          <span>A két jelszó nem egyezik meg!</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">E-mail cím:*</label>
+        <input type="email" name="email" class="form-control" formControlName="email" placeholder="Írja be az e-mail címét...">
+      </div>
+      <h3 >Szállítási címek:</h3>
+      <h5>Cím1:*</h5>
+      <div class="form-group">
+        <label for="inputstreet">Utca:</label>
+        <input  formControlName="address1street"  type="text" class="form-control" id="inputstreet" placeholder="Leányka utca">
+        <div *ngIf="address1street.invalid && (address1street.dirty || address1street.touched)"  class="alert alert-danger"> 
+          <span>A mező kötelező</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputnumber">Szám/Emelet/ajtó</label>
+        <input formControlName="address1number"  type="text" class="form-control" id="inputnumber" placeholder="55">
+        <div *ngIf="address1number.invalid && (address1number.dirty || address1number.touched)"  class="alert alert-danger"> 
+          <span>A mező kötelező</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputvillage">Város</label>
+          <input formControlName="address1village"  type="text" class="form-control" placeholder="Eger"  id="inputvillage">
+          <div *ngIf="address1village.invalid && (address1village.dirty || address1village.touched)"  class="alert alert-danger"> 
+            <span>A mező kötelező</span>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputcounty">Megye</label>
+          <select formControlName="address1county"  id="inputcounty" class="form-control">
+            <option selected >Heves</option>
+            <option >Békés</option>
+          </select>
+          <div *ngIf="address1county.invalid && (address1county.dirty || address1county.touched)"  class="alert alert-danger"> 
+            <span>A mező kötelező</span>
+          </div>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputZip">Irányítószám</label>
+          <input formControlName="address1zip"  type="text" class="form-control" id="inputZip">
+          <div *ngIf="address1zip.invalid && (address1zip.dirty || address1zip.touched)"  class="alert alert-danger"> 
+            <span>A mező kötelező</span>
+          </div>
+        </div>       
+      </div>
+    </form>
+    <form [formGroup]= "additionalAddressForm" #formDir="ngForm">
+      <h5>Cím2:</h5>
+      <small>Nem kötelező kitölteni...</small>
+      <div class="form-group">
+        <label for="inputstreet2">Utca:</label>
+        <input  formControlName="address2street"  type="text" class="form-control" id="inputstreet2" placeholder="Leányka utca">
+        <div *ngIf="address2street.invalid && (address2street.dirty || address2street.touched)"  class="alert alert-danger"> 
+          <span>A mező kötelező</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputnumber2">Szám/Emelet/ajtó</label>
+        <input formControlName="address2number"  type="text" class="form-control" id="inputnumber2" placeholder="55">
+        <div *ngIf="address2number.invalid && (address2number.dirty || address2number.touched)"  class="alert alert-danger"> 
+          <span>A mező kötelező</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputvillage2">Város</label>
+          <input formControlName="address2village"  type="text" class="form-control" placeholder="Eger"  id="inputvillage2">
+          <div *ngIf="address2village.invalid && (address2village.dirty || address2village.touched)"  class="alert alert-danger"> 
+            <span>A mező kötelező</span>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputcounty2">Megye</label>
+          <select formControlName="address2county"  id="inputcounty2" class="form-control">
+            <option selected >Heves</option>
+            <option >Békés</option>
+          </select>
+          <div *ngIf="address2county.invalid && (address2county.dirty || address2county.touched)"  class="alert alert-danger"> 
+            <span>A mező kötelező</span>
+          </div>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputZip2">Irányítószám</label>
+          <input formControlName="address2zip"  type="text" class="form-control" id="inputZip2">
+          <div *ngIf="address2zip.invalid && (address2zip.dirty || address2zip.touched)"  class="alert alert-danger"> 
+            <span>A mező kötelező</span>
+          </div>
+        </div>
+      </div>
+      
+   
+    </form>
+    <button (click)="register()" class="btn btn-primary btn-block"  >Regisztrálás</button>
+    <small>*A csillagozott mezőket kötelezően ki kell tölteni!</small>
   </div>
 </div>
+        
+    
