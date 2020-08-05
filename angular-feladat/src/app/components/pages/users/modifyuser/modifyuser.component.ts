@@ -20,30 +20,9 @@ export class ModifyuserComponent implements OnInit {
   _isLoading:boolean;
   userForm:FormGroup = new FormGroup({});
   constructor(private userService:UserService, private route:ActivatedRoute, private toastService:ToastService) {
-      this.roles = [{'role':"admin",'name':'Adminisztrátor'},{'role':"user",'name':'Felhasználó'}];
-      this.userForm = new FormGroup({
-        'realname':new FormControl(this.user.realname,[
-          Validators.required,
-          Validators.minLength(5)
-          ]
-        ),
-        'password':new FormControl(this.passwordtemp,[
-          Validators.required,
-          Validators.minLength(8)
-          ]
-        ),
-        'role':new FormControl(this.user.role,[
-          Validators.required
-        ])
-        ,
-        'email':new FormControl(this.user.email,[
-          Validators.required,
-          Validators.minLength(5)]
-        ),
-        'username':new FormControl(this.user.username,
-          [Validators.required,
-          Validators.minLength(5)])
-      });
+    this.roles = [
+      {'role':"admin",'name':'Adminisztrátor'},
+      {'role':"user",'name':'Felhasználó'}];
    }
 
   ngOnInit(): void {
@@ -53,11 +32,36 @@ export class ModifyuserComponent implements OnInit {
         this.user = user;  
         this.selectedRole = this.roles.filter(r => r.role == user.role)[0];
         this.setIsLoading(false);
+        this.userForm = new FormGroup({
+          'realname':new FormControl(this.user.realname,[
+            Validators.required,
+            Validators.minLength(5)
+            ]
+          ),
+          'password':new FormControl(this.passwordtemp,[
+            Validators.required,
+            Validators.minLength(8)
+            ]
+          ),
+          'role':new FormControl(this.user.role,[
+            Validators.required
+          ])
+          ,
+          'email':new FormControl(this.user.email,[
+            Validators.required,
+            Validators.minLength(5)]
+          ),
+          'username':new FormControl(this.user.username,
+            [Validators.required,
+            Validators.minLength(5)])
+        });
     },(error)=>{
       this.setIsLoading(false);
+
       this.toastService.showError(`Hiba az oldal letöltése közben. Az oka: ${error.error.error}`,"Hiba a letöltés közben.");
 
     });
+   
   
 }
 
@@ -77,12 +81,14 @@ modifyUser():void{
   this.user.realname = this.realname.value;
   this.user.role = this.role.value.role;
   this.user.username = this.username.value;
+  console.log(this.user);
   this.userService.modifyUser(this.user).subscribe(()=>{
     this.setIsLoading(false);
     this.toastService.showSuccess("Sikeresen módosította a felhasználót","Felhasználó módosítása");
     
   },(error)=>{
     this.setIsLoading(false);
+
     this.toastService.showError(`Hiba a felhasználó módosítása közben. Az oka: ${error.error.error}`,"Felhasználó módosítása");
   });
 }

@@ -4,6 +4,7 @@ import { Product } from 'src/app/models/Product';
 import {Productservice} from 'src/app/service/productservice.service'
 import { Shared } from 'src/app/models/Shared';
 import { ToastService } from 'src/app/service/toast.service';
+import { User } from 'src/app/models/User';
 
 @Component({
   selector: 'app-product',
@@ -12,9 +13,12 @@ import { ToastService } from 'src/app/service/toast.service';
 })
 export class ProductComponent implements OnInit {
   id:number;
-  product:Product;
+  product:Product = new Product();
+ 
   _isLoading:boolean;
-  constructor(private route:ActivatedRoute, private productService:Productservice,private  shared:Shared, private toastService:ToastService) { }
+  constructor(private route:ActivatedRoute, private productService:Productservice,private  shared:Shared, private toastService:ToastService) {
+    this.product.owner = new User();
+  }
 
   ngOnInit(): void {
     this.setIsLoading(true);
@@ -36,7 +40,6 @@ export class ProductComponent implements OnInit {
     this.productService.buyProduct(this.product);
   }
   isAdmin():boolean{
-    console.log(this.shared.getLoggedInUser())
     return this.shared.getLoggedInUser() && this.shared.getLoggedInUser().role =="admin" && !this.product.isAccapted;
   }
   authProduct():void{

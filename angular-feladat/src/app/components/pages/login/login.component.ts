@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(["/"]);
       this.setIsLoading(false);
     },error=>{
-      this.toastService.showError(`Hiba történt a vásárlás közben. A hiba oke: ${error.error.error} `,"Bejelentkezés");
+      this.toastService.showError(`Sikertelen bejelentkezés. ${error.error.error} `,"Bejelentkezés");
       this.setIsLoading(false);
     }
     );
