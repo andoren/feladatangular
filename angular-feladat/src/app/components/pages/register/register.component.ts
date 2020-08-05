@@ -6,6 +6,7 @@ import { UserService } from 'src/app/service/userservice.service';
 import {mustMatchValidator } from 'src/app/validators/mustmatch.validator';
 import * as sha1 from 'js-sha1';
 import { Router } from '@angular/router';
+import { ToastService } from 'src/app/service/toast.service';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,8 @@ export class RegisterComponent implements OnInit {
   user:User = new User();
   passwordmatch:string;
   userForm:FormGroup;
-  constructor(private userService:UserService, private route:Router) { }
+  _isLoading:boolean;
+  constructor(private userService:UserService, private route:Router, private toastService:ToastService) { }
 
   ngOnInit(): void {
     this.user.email="";
@@ -65,6 +67,7 @@ export class RegisterComponent implements OnInit {
     return this.user.password != this.passwordmatch;
   }
   register():void{
+    this. setIsLoading(true);
     this.user.username = this.username.value;
     this.user.realname = this.realname.value;
     this.user.email = this.email.value;
@@ -72,10 +75,19 @@ export class RegisterComponent implements OnInit {
     console.log(this.user);
     this.userService.register(this.user).subscribe(user=>{
       this.route.navigate(["/"])
+      this.setIsLoading(false);
+      this.toastService.showSuccess("Sikeres regisztráció","Regisztráció");
     },error=>{
-      console.log(error);
-    }
-    );
+      this.toastService.showError(`Sikertelen regisztráció. Az oka: ${error.error.error}`,"Regisztráció");
+      this.setIsLoading(false);
+    });
  
+  }
+  setIsLoading(bool:boolean):void{
+    this._isLoading = bool;
+  }
+  getIsLoading():boolean{
+
+    return this._isLoading;
   }
 }
