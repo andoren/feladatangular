@@ -66,7 +66,6 @@ export class NewproductComponent implements OnInit {
         this.setIsLoading(false);
       }
     },(error)=>{
-      console.log(error);
       this.toastService.showError(`Hiba történt a termék hozzáadása közben. A hiba oke: ${error.error.error}:(`,"Termék hozzáadása");
       this.setIsLoading(false);
     });

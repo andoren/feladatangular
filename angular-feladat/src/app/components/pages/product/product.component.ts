@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/models/Product';
 import {Productservice} from 'src/app/service/productservice.service'
 import { Shared } from 'src/app/models/Shared';
+import { ToastService } from 'src/app/service/toast.service';
 
 @Component({
   selector: 'app-product',
@@ -13,15 +14,18 @@ export class ProductComponent implements OnInit {
   id:number;
   product:Product;
   _isLoading:boolean;
-  constructor(private route:ActivatedRoute, private productService:Productservice,private  shared:Shared) { }
+  constructor(private route:ActivatedRoute, private productService:Productservice,private  shared:Shared, private toastService:ToastService) { }
 
   ngOnInit(): void {
     this.setIsLoading(true);
     this.id = Number(this.route.snapshot.paramMap.get('id'));
     this.productService.getProductById(this.id).subscribe(product=>{{
-      this.product = product;      
-    }},()=>{},()=>{
+      this.product = product;     
+      this.setIsLoading(false); 
+    }},error=>{
+      this.toastService.showError(`Hiba történt az adatok betöltése közben. ${error.error.error}`,"Hiba a letöltés közben.");
       this.setIsLoading(false);
+
     });
     
   }
