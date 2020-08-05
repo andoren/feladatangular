@@ -63,11 +63,11 @@ export class NewproductComponent implements OnInit {
       {
         this.toastService.showSuccess("Sikeresen hozzáadott egy új terméket ! :)","Termék hozzáadása");
         this.router.navigate(["/"]);
+        this.setIsLoading(false);
       }
     },(error)=>{
-    
-      this.toastService.showError("Hiba történt a termék hozzáadása közben. Sajnáljuk !:(","Termék hozzáadása");
-    },()=>{
+      console.log(error);
+      this.toastService.showError(`Hiba történt a termék hozzáadása közben. A hiba oke: ${error.error.error}:(`,"Termék hozzáadása");
       this.setIsLoading(false);
     });
   }
