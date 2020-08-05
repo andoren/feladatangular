@@ -7,7 +7,6 @@ export class User{
     role:string;
     token:string;
     password:string;
-    addresses:Address[];
     getToken():string{
         return this.token;
     }

@@ -23,6 +23,7 @@ import { ModifyuserComponent } from './components/pages/users/modifyuser/modifyu
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { AddresspopupComponent } from './components/addresspopup/addresspopup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     ContactComponent,
     SumpageComponent,
     ModifyuserComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    AddresspopupComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import {User} from '../models/User'
+import { Address } from './Address';
 export class Product{
   id:number;
   name:string;
@@ -11,4 +12,5 @@ export class Product{
   created_date:Date;
   sold_date:Date;
   buyer:User;
+  baddress:Address;
 }

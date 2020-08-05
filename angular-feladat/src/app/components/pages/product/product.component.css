@@ -6,7 +6,7 @@
 .sold{
   position: absolute; 
   max-width: 0;
-  top: 40%; /* Adjust this value to move the positioned div up and down */
+  top: 40%; 
   text-align: center;
   width: 60%; 
   top:0;

@@ -39,6 +39,9 @@ export class UserService {
    getUserById(id:number):Observable<any>{
      return this.http.get(`${this.sharedData.PROTECTED_BASE_URL}/getuserbyid/${id}`,this.getHeaderOption());
    }
+   getAddressesByUserId():Observable<any>{
+     return this.http.get(`${this.sharedData.PROTECTED_BASE_URL}/getuseraddresses`,this.getHeaderOption());
+   }
    login(username, password):Observable<any> {
     return this.http.post<User>(`${this.sharedData.BASE_URL}/login`,{"username":username,"password":password})
         .pipe(map(user => {

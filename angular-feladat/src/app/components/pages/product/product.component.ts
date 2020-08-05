@@ -5,6 +5,9 @@ import {Productservice} from 'src/app/service/productservice.service'
 import { Shared } from 'src/app/models/Shared';
 import { ToastService } from 'src/app/service/toast.service';
 import { User } from 'src/app/models/User';
+import { Address } from 'src/app/models/Address';
+import { UserService } from 'src/app/service/userservice.service';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-product',
@@ -14,9 +17,11 @@ import { User } from 'src/app/models/User';
 export class ProductComponent implements OnInit {
   id:number;
   product:Product = new Product();
- 
+  addresses:Address[];
   _isLoading:boolean;
-  constructor(private route:ActivatedRoute, private productService:Productservice,private  shared:Shared, private toastService:ToastService) {
+  selectedAddress:Address;
+  addressForm:FormGroup;
+  constructor(private userService:UserService,private route:ActivatedRoute, private productService:Productservice,private  shared:Shared, private toastService:ToastService) {
     this.product.owner = new User();
   }
 
@@ -31,12 +36,20 @@ export class ProductComponent implements OnInit {
       this.setIsLoading(false);
 
     });
+    this.addressForm = new FormGroup({
+      'selectedAddress':new FormControl(this.selectedAddress,[
+        Validators.required,
+        ]
+      )
+    });
     
   }
   notMine():boolean{
       return this.product.owner.id != this.shared.getLoggedInUser().id;
   }
   buyProduct():void{
+
+    this.product.baddress = this.address.value;
     this.productService.buyProduct(this.product);
   }
   isAdmin():boolean{
@@ -53,5 +66,21 @@ export class ProductComponent implements OnInit {
   getIsLoading():boolean{
 
     return this._isLoading;
+  }
+  popUpOpen = false;
+
+  chooseAddress() {
+    
+    this.userService.getAddressesByUserId().subscribe(addresses=>{
+      this.popUpOpen = true;
+      this.addresses = addresses;
+    },error =>{
+      this.toastService.showError("Hiba az adatok letöltése közben! Hiba: "+error.error.error,"Címek letöltése");
+    });
+    
+  }
+  get address() { return this.addressForm.get('selectedAddress'); }
+  cancelPopUp() {
+    this.popUpOpen = false;
   }
 }

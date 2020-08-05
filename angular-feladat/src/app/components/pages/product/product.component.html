@@ -1,9 +1,30 @@
 <div *ngIf="getIsLoading()" class="spinner-wrapper">
   <app-spinner text="töltés"></app-spinner>
 </div>
+<app-addresspopup [isOpen]="popUpOpen">
+  <div class="box">
+    <header>
+      <span class="title">Szállítási cím kiválsztása:</span>
+    </header>
+    <main>
+      <form [formGroup]="addressForm" >
+      <select [ngModel]="selectedAddress" class="form-control" formControlName="selectedAddress"  >
+        <option  disabled [ngValue]="undefined">Szállítási cím kiválasztása</option>
+        
+        <option *ngFor="let address of addresses" [ngValue]="address"> <span class="m-sm-1">{{address.country}} {{address.zip}} {{address.county}} {{address.village}}, {{address.number}}.</span></option>
+    </select>
+  </form>
+    </main>
+    <footer>
+   
+      <button class=" mt-sm-3 btn btn-secondary btn-lg btn-block" (click)="cancelPopUp()">Mégse</button>
+      <button class="btn btn-primary btn-lg btn-block" (click) = "buyProduct()" >Kiválaszt</button>
+    </footer>
+  </div>
+</app-addresspopup>
 <div class="productcontainer h-94 container  d-flex flex-column justify-content-center">
   <div class="row"  >
-    <div class="ml-lg-3" style="position: relative; text-align: center; display: inline-block;" >
+    <div class="ml-lg-3" style="position: relative;   ;text-align: center; display: inline-block;" >
      
       <img class="shadow-lg rounded" src={{product.imagepath}} width="300" height="300">
       <div *ngIf="product.issold"   class="sold ml-5" >
@@ -22,7 +43,7 @@
         </div>
       </div>
       <br class="clearfix">
-      <div class="row ">
+      <div class="row">
         <div style="word-wrap: break-word;" class="col  border-top border-right p-sm-4">
             <h4>Átvételi lehetőségek:</h4>
             <ul>
@@ -55,11 +76,9 @@
           <span  >Feltöltötte: {{product.owner.username}}</span><br> <span >Dátum: {{product.created_date | date:'yyyy-MM-dd'}}</span>
       </div>
       <div class="ml-auto p-2" >
-        <div >
-          
-          
+        <div>
           <div  *ngIf="!product.issold && notMine()" >
-            <button *ngIf="notMine()" (click) = "buyProduct()"  class="btn btn-primary btn-block">
+            <button *ngIf="notMine()" (click) = "chooseAddress() "  class="btn btn-primary btn-block">
                 Megvásárol
             </button>
           </div>

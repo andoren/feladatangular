@@ -22,6 +22,7 @@ export class SumpageComponent implements OnInit {
     this.productService.getProductById(this.id).subscribe(product=>{{
       this.product = product;           
       this.setIsLoading(false);
+      
     }},(error)=>{
       this.setIsLoading(false);
       this.toastService.showError(`Hiba az oldal letöltése közben. Az oka: ${error.error.error}`,"Hiba a letöltés közben.");
