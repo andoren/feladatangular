@@ -30,20 +30,14 @@ export class LoginComponent implements OnInit {
       this.setIsLoading(true);
       this.invalidLogin = false
       this.currentUser = user;
-    },error=>{
-      
-    }
-    ,()=>{
-      if(this.currentUser && this.currentUser.token !== null){
       this.toastService.showSuccess("Sikeres bejelentkezés!","Bejelentkezés");
       this.router.navigate(["/"]);
-    }
-      else {
-        this.toastService.showError("Sikertelen bejelentkezés.","Bejelentkezés");
-        this.invalidLogin = true
-      };
       this.setIsLoading(false);
-    });
+    },error=>{
+      this.toastService.showError(`Hiba történt a vásárlás közben. A hiba oke: ${error.error.error} `,"Bejelentkezés");
+      this.setIsLoading(false);
+    }
+    );
  
   }
   setIsLoading(bool:boolean):void{
