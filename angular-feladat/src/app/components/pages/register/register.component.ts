@@ -153,13 +153,13 @@ export class RegisterComponent implements OnInit {
       this.address2.number = this.address2number.value;
       this.addresses.push(this.address2);
     }
-    console.log(this.addresses);
+   
     this. setIsLoading(true);
     this.user.username = this.username.value;
     this.user.realname = this.realname.value;
     this.user.email = this.email.value;
     this.user.password = sha1(this.password.value);
-    console.log(this.user);
+    
     this.userService.register(this.user,this.addresses).subscribe(user=>{
       this.route.navigate(["/"])
       this.setIsLoading(false);

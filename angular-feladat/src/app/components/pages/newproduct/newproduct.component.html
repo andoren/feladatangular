@@ -10,21 +10,30 @@
         </div>
         <form [formGroup]="productForm" #formDir="ngForm" >
           <div class="form-group">
-            <label for="productname">Termék neve:</label>
-            <input type="text" name="prodcutname" required class="form-control" formControlName="productname" placeholder="Írja be a termék nevét...">
+            <label for="productname">Termék neve:*</label>
+            <input type="text" name="productname" class="form-control" formControlName="productname" placeholder="Írja be a termék nevét...">
+            <div *ngIf="productname.invalid && (productname.dirty || productname.touched)"  class="alert alert-danger"> 
+              <span>Minimum hossz 3 és a maximum 50 karakter</span>
+            </div>
           </div>
           <div class="form-group">
-            <label for="description">Leírás:</label>
+            <label for="description">Leírás:*</label>
             <textarea style="min-height: 150px;"  name="description" class="form-control" formControlName="description" placeholder="A termék leírása"></textarea>
+            <div *ngIf="description.invalid && (description.dirty || description.touched)"  class="alert alert-danger"> 
+              <span>Minimum hossz 8 és maximum 1000 karakter </span>
+            </div>
           </div>
           <div class="form-group">
-            <label for="price">Ára:</label>
+            <label for="price">Ára:*</label>
             <input type="number" name="price" class="form-control" formControlName="price" placeholder="Irja be a termék árát.">
+            <div *ngIf="price.invalid && (price.dirty || price.touched)"  class="alert alert-danger"> 
+              <span>A mező kötelező</span>
+            </div>
           </div>
           <div class="clearfix">
             <label for="price">Kép kiválasztása:</label>
-            <input  name="selectedFile"  (change)="onFileChanged($event)" class="custom-file-input" id="selectedFile"  type="file" class="form-control-file border">
-     
+            <input  name="selectedFile"  (change)="onFileChanged($event)"  class="custom-file-input" id="selectedFile"  type="file" class="form-control-file border">
+            <small>Nincs valós kép feltöltés...</small>
           </div>
 
           <input type="submit" class="btn btn-primary float-right mt-sm-3"  (click)="addProduct()" value="Termék hozzáadása">

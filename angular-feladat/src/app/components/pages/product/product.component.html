@@ -3,15 +3,15 @@
 </div>
 <app-addresspopup [isOpen]="popUpOpen">
   <div class="box">
-    <header>
-      <span class="title">Szállítási cím kiválsztása:</span>
+    <header class="mb-sm-2">
+      <span class="title ">Szállítási cím kiválsztása:</span>
     </header>
     <main>
       <form [formGroup]="addressForm" >
       <select [ngModel]="selectedAddress" class="form-control" formControlName="selectedAddress"  >
         <option  disabled [ngValue]="undefined">Szállítási cím kiválasztása</option>
         
-        <option *ngFor="let address of addresses" [ngValue]="address"> <span class="m-sm-1">{{address.country}} {{address.zip}} {{address.county}} {{address.village}}, {{address.number}}.</span></option>
+        <option *ngFor="let address of addresses" [ngValue]="address"> <span class="m-sm-1">{{address.country}} {{address.zip}} {{address.county}} {{address.village}}, {{address.street}} {{address.number}}.</span></option>
     </select>
   </form>
     </main>

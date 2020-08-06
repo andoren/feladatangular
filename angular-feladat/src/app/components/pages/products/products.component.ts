@@ -30,7 +30,8 @@ export class ProductsComponent implements OnInit {
         this.products = products;  
         this. setIsLoading(false);
       },(error)=>{
-        this.toastService.showError(`Hiba az adatok letöltése közben. ${error.error.error}`,"Hiba a letöltés közben.");
+        if(error.error.error)this.toastService.showError(`Hiba az adatok letöltése közben. ${error.error.error}`,"Hiba a letöltés közben.");
+        else this.toastService.showError(`Hiba az adatok letöltése közben. ${error.error}`,"Hiba a letöltés közben.");
         this. setIsLoading(false);
       });
     }
@@ -39,7 +40,8 @@ export class ProductsComponent implements OnInit {
         this.products = products;
         this. setIsLoading(false);
       },(error)=>{
-        this.toastService.showError(`Hiba az adatok letöltése közben. ${error.error.error}`,"Hiba a letöltés közben.");
+        if(error.error.error)this.toastService.showError(`Hiba az adatok letöltése közben. ${error.error.error}`,"Hiba a letöltés közben.");
+        else this.toastService.showError(`Hiba az adatok letöltése közben. ${error.error}`,"Hiba a letöltés közben.");
         this. setIsLoading(false);
       });
     } 
@@ -48,7 +50,8 @@ export class ProductsComponent implements OnInit {
         this.products = products;
         this. setIsLoading(false);
       },(error)=>{
-        this.toastService.showError(`Hiba az adatok letöltése közben. ${error.error.error}`,"Hiba a letöltés közben.");
+        if(error.error.error)this.toastService.showError(`Hiba az adatok letöltése közben. ${error.error.error}`,"Hiba a letöltés közben.");
+        else this.toastService.showError(`Hiba az adatok letöltése közben. ${error.error}`,"Hiba a letöltés közben.");
         this. setIsLoading(false);
       });
     }
