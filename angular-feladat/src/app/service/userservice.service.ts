@@ -53,10 +53,11 @@ export class UserService {
         }));
     }
     register(user:User,addresses:Address[]):Observable<any>{
-      return this.http.post<User>(`${this.sharedData.BASE_URL}/register`,{'user':user,'addresses':addresses}).pipe(
+      console.log({user,addresses});
+      return this.http.post<User>(`${this.sharedData.BASE_URL}/register`,{user,addresses}).pipe(
         map(user =>{
           if(user.token !== null)localStorage.setItem('user', JSON.stringify(user));
-            this.toastService.showSuccess("Sikeres regisztráció!","Regisztráció");
+         
             this.currentUserSubject.next(user);
           return user;
         })

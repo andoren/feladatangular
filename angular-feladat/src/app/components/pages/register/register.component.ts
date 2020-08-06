@@ -165,7 +165,9 @@ export class RegisterComponent implements OnInit {
       this.setIsLoading(false);
       this.toastService.showSuccess("Sikeres regisztráció","Regisztráció");
     },error=>{
-      this.toastService.showError(`Sikertelen regisztráció. Az oka: ${error.error.error}`,"Regisztráció");
+      if(error.error.error)this.toastService.showError(`Sikertelen regisztráció. Az oka: ${error.error.error}`,"Regisztráció");
+      else this.toastService.showError(`Sikertelen regisztráció. Az oka: ${error.error}`,"Regisztráció");
+      console.log(error);
       this.setIsLoading(false);
     });
  
