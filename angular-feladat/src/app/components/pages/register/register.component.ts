@@ -26,11 +26,14 @@ export class RegisterComponent implements OnInit {
     constructor(private userService:UserService, private route:Router, private toastService:ToastService) { }
 
   ngOnInit(): void {
-    this.address1 = new Address();
-    this.address2 = new Address();
-    this.address1.country="Magyarország";
-    this.address2.country="Magyarország";
+    this.createUserForm();
+    this.createAddtiionalAddressForm();
+   
+  }
+  createUserForm():void{
     this.user.role="user";
+    this.address1 = new Address();
+    this.address1.country="Magyarország";
     this.userForm = new FormGroup({
       'realname':new FormControl(this.user.realname,[
         Validators.required,
@@ -80,33 +83,41 @@ export class RegisterComponent implements OnInit {
     },{ 
       validators: mustMatchValidator
     });
+  }
+  createAddtiionalAddressForm():void{
+   
+    this.address2 = new Address();
+   
+    this.address2.country="Magyarország";
+ 
     this.additionalAddressForm = new FormGroup({
       
-        'address2street':new FormControl(this.address2.street,[
-          Validators.required
-        ])
-        ,
-        'address2number':new FormControl(this.address2.number,[
-          Validators.required
-        ])
-        ,
-        'address2zip':new FormControl(this.address2.zip,[
-          Validators.required
-        ])
-        ,
-        'address2county':new FormControl(this.address2.county,[
-          Validators.required
-        ])
-        ,
-        'address2country':new FormControl(this.address2.country,[
-          Validators.required
-        ])
-        ,
-        'address2village':new FormControl(this.address2.village,[
-          Validators.required
-        ])
-    });
+      'address2street':new FormControl(this.address2.street,[
+        Validators.required
+      ])
+      ,
+      'address2number':new FormControl(this.address2.number,[
+        Validators.required
+      ])
+      ,
+      'address2zip':new FormControl(this.address2.zip,[
+        Validators.required
+      ])
+      ,
+      'address2county':new FormControl(this.address2.county,[
+        Validators.required
+      ])
+      ,
+      'address2country':new FormControl(this.address2.country,[
+        Validators.required
+      ])
+      ,
+      'address2village':new FormControl(this.address2.village,[
+        Validators.required
+      ])
+  });
   }
+
   get username() { return this.userForm.get('username'); }
   get realname() { return this.userForm.get('realname'); }
   get password() { return this.userForm.get('password'); }
@@ -132,33 +143,22 @@ export class RegisterComponent implements OnInit {
     return this.user.password != this.passwordmatch;
   }
   register():void{
+    console.log(this. userForm);
     if(this.userForm.invalid) {
       this.toastService.showError("Hibás regisztrációs űrlap kitöltés","Hibás kitöltés");
       return;
     }
     else{
-      this.address1.county = this.address1county.value;
-      this.address1.village = this.address1village.value;
-      this.address1.zip = this.address1zip.value;
-      this.address1.street = this.address1street.value;
-      this.address1.number = this.address1number.value;
-      this.addresses.push(this.address1);
+      this. setIsLoading(true);
+      this.setPrimaryAddress()
     }
     if(!this.additionalAddressForm.invalid)
     {
-      this.address2.county = this.address2county.value;
-      this.address2.village = this.address2village.value;
-      this.address2.zip = this.address2zip.value;
-      this.address2.street = this.address2street.value;
-      this.address2.number = this.address2number.value;
-      this.addresses.push(this.address2);
+      this.setAdditionalAddress();
     }
    
-    this. setIsLoading(true);
-    this.user.username = this.username.value;
-    this.user.realname = this.realname.value;
-    this.user.email = this.email.value;
-    this.user.password = sha1(this.password.value);
+    this.setUserData();
+
     
     this.userService.register(this.user,this.addresses).subscribe(user=>{
       this.route.navigate(["/"])
@@ -171,6 +171,28 @@ export class RegisterComponent implements OnInit {
       this.setIsLoading(false);
     });
  
+  }
+  setPrimaryAddress():void{
+    this.address1.county = this.address1county.value;
+    this.address1.village = this.address1village.value;
+    this.address1.zip = this.address1zip.value;
+    this.address1.street = this.address1street.value;
+    this.address1.number = this.address1number.value;
+    this.addresses.push(this.address1);
+  }
+  setAdditionalAddress():void{
+    this.address2.county = this.address2county.value;
+    this.address2.village = this.address2village.value;
+    this.address2.zip = this.address2zip.value;
+    this.address2.street = this.address2street.value;
+    this.address2.number = this.address2number.value;
+    this.addresses.push(this.address2);
+  }
+  setUserData():void{
+    this.user.username = this.username.value;
+    this.user.realname = this.realname.value;
+    this.user.email = this.email.value;
+    this.user.password = sha1(this.password.value);
   }
   setIsLoading(bool:boolean):void{
     this._isLoading = bool;
