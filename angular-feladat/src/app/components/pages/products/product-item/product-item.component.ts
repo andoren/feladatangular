@@ -20,9 +20,8 @@ export class ProductItemComponent implements OnInit {
   ngOnInit(): void {
     this.product.created_date = new Date(Date.now());
   }
-  readMore():void{
-      this.route.navigate(['product/'+this.product.id]);
-  }
+
+
   productIsMine():boolean{
     return this.shared.getLoggedInUser() && this.product.owner.id == this.shared.getLoggedInUser().id;
   }

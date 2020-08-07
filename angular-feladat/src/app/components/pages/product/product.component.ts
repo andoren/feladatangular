@@ -32,7 +32,8 @@ export class ProductComponent implements OnInit {
       this.product = product;     
       this.setIsLoading(false); 
     }},error=>{
-      this.toastService.showError(`Hiba történt az adatok betöltése közben. ${error.error.error}`,"Hiba a letöltés közben.");
+      if(error.error.erorr)this.toastService.showError(`Hiba történt az adatok betöltése közben. ${error.error.error}`,"Hiba a letöltés közben.");
+      else this.toastService.showError(`Hiba történt az adatok betöltése közben. ${error.error}`,"Hiba a letöltés közben.");
       this.setIsLoading(false);
 
     });
@@ -75,7 +76,8 @@ export class ProductComponent implements OnInit {
       this.popUpOpen = true;
       this.addresses = addresses;
     },error =>{
-      this.toastService.showError("Hiba az adatok letöltése közben! Hiba: "+error.error.error,"Címek letöltése");
+      if(error.error.error)this.toastService.showError("Hiba az adatok letöltése közben! Hiba: "+error.error.error,"Címek letöltése");
+      else this.toastService.showError("Hiba az adatok letöltése közben! Hiba: "+error.error,"Címek letöltése");
     });
     
   }

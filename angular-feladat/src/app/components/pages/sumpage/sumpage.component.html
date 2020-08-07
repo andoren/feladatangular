@@ -7,19 +7,19 @@
     <h4 class="mb-sm-2">Terméked adatai:</h4>
     <div class="row">
         <div class="col-sm-4">
-            <img class="shadow-lg rounded" src={{product.imagepath}} width="100%">
+            <img class="shadow-lg rounded" src={{product?.imagepath}} width="100%">
         </div>
         <div class="col-sm-8 ">
-            <h5>{{product.name}}</h5>
+            <h5>{{product?.name}}</h5>
             <h6>Leírás: </h6>
-            <p style="text-align: justify;">{{product.description}}</p>
+            <p style="text-align: justify;">{{product?.description}}</p>
             <div class="d-flex">
-                <p>Feltöltve: {{product.created_date | date:'yyyy-MM-dd'}}</p>
+                <p>Feltöltve: {{product?.created_date | date:'yyyy-MM-dd'}}</p>
                
-                <p class="ml-auto">Vásárlás időpontja: {{product.sold_date | date:'yyyy-MM-dd'}}</p>
+                <p class="ml-auto">Vásárlás időpontja: {{product?.sold_date | date:'yyyy-MM-dd'}}</p>
                 
             </div>
-            <h5>Ár: {{product.price | currency:'HUF':'symbol':'4.0-2':'hu'}}</h5>
+            <h5>Ár: {{product?.price | currency:'HUF':'symbol':'4.0-2':'hu'}}</h5>
         </div>
     </div>
 </div>
@@ -29,11 +29,11 @@
         <div class="col ml-sm-2 p-sm-2">
             <h4 >Vásárló adatai:</h4>
             <h5>Teljes neve:</h5>
-            <span>{{product.buyer.realname}}</span>
+            <span>{{product?.buyer?.realname}}</span>
             <h5>Felhasználóneve:</h5>
-            <span>{{product.buyer.username}}</span>
+            <span>{{product?.buyer?.username}}</span>
             <h5>E-mail címe:</h5>
-            <span>{{product.buyer.email}}</span>
+            <span>{{product?.buyer?.email}}</span>
           
         </div>
         <div class="col ml-sm-2 p-sm-2 border-left">
@@ -41,7 +41,7 @@
             <h5>Szállítási mód: </h5>
             <span>MPL futárszolgálat.</span>
             <h5 class="mt-sm-1">Szállítási cím:</h5>
-            <p class="m-sm-1">{{product.baddress.country}}</p><p class="m-sm-1">{{product.baddress.zip}} </p> <p class="m-sm-1">{{product.baddress.county}} megye  {{product.baddress.village}}, {{product.baddress.street}} {{product.baddress.number}}.</p>
+            <p class="m-sm-1">{{product?.baddress?.country}}</p><p class="m-sm-1">{{product?.baddress?.zip}} </p> <p class="m-sm-1">{{product?.baddress?.county}} megye  {{product?.baddress?.village}}, {{product?.baddress?.street}} {{product?.baddress?.number}}.</p>
                  
         </div>
     </div>
