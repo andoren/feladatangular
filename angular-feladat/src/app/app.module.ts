@@ -24,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { AddresspopupComponent } from './components/addresspopup/addresspopup.component';
+import {CookieService} from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +46,7 @@ import { AddresspopupComponent } from './components/addresspopup/addresspopup.co
     ModifyuserComponent,
     SpinnerComponent,
     AddresspopupComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -54,9 +56,10 @@ import { AddresspopupComponent } from './components/addresspopup/addresspopup.co
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot()
+    
 
   ],
-  providers: [],
+  providers: [CookieService],
 
   bootstrap: [AppComponent]
 })

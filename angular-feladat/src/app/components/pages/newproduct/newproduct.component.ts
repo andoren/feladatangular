@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Product } from 'src/app/models/Product';
 
 import { ToastService } from 'src/app/service/toast.service';
+import { Shared } from 'src/app/models/Shared';
 
 @Component({
   selector: 'app-newproduct',
@@ -17,7 +18,7 @@ export class NewproductComponent implements OnInit {
   descriptionholder:string;
   priceholder:number;
   productForm:FormGroup;
-  constructor(private productService:Productservice,   private router:Router, private toastService:ToastService) { }
+  constructor(private productService:Productservice, private sharedData:Shared,  private router:Router, private toastService:ToastService) { }
   ngOnInit(): void {
     this.productForm = new FormGroup({
       'productname':new FormControl(this.productnameholder,[
@@ -50,7 +51,6 @@ export class NewproductComponent implements OnInit {
   get description(){return this.productForm.get("description");}
   get price(){return this.productForm.get("price");}
   addProduct() {
-    console.log(this.productForm);
     if(this.productForm.invalid) {
       this.toastService.showError("Hibás termék űrlap kitöltés","Hibás kitöltés");
       return;
@@ -61,9 +61,8 @@ export class NewproductComponent implements OnInit {
     product.name = this.productname.value;
     product.price = this.price.value;
     product.created_date = new Date(Date.now());
-    product.owner = JSON.parse(localStorage.getItem('user'));
+    product.owner = this.sharedData.getLoggedInUser();
     product.description = this.description.value;
-    console.log(product);
     this.productService.addProduct(product).subscribe(()=>{
       {
         this.toastService.showSuccess("Sikeresen hozzáadott egy új terméket ! :)","Termék hozzáadása");

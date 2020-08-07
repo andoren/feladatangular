@@ -89,7 +89,8 @@ modifyUser():void{
   },(error)=>{
     this.setIsLoading(false);
 
-    this.toastService.showError(`Hiba a felhasználó módosítása közben. Az oka: ${error.error.error}`,"Felhasználó módosítása");
+    if(error.error.error)this.toastService.showError(`Hiba a felhasználó módosítása közben. Az oka: ${error.error.error}`,"Felhasználó módosítása");
+    else this.toastService.showError(`Hiba a felhasználó módosítása közben. Az oka: ${error.error}`,"Felhasználó módosítása");
   });
 }
 setIsLoading(bool:boolean):void{

@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import {ToastService} from 'src/app/service/toast.service'
 import { Address } from '../models/Address';
+import { CookieService } from 'ngx-cookie-service';
 const httpOptions={
   headers:new HttpHeaders({
     'Content-Type':'application/json',
@@ -18,14 +19,12 @@ const httpOptions={
 })
 
 export class UserService {
-  sharedData:Shared;
   options = {};
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-   constructor(private http:HttpClient, private router:Router, private toastService:ToastService) {
-      this.sharedData = new Shared();
-      this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
+   constructor(private http:HttpClient, private router:Router, private toastService:ToastService, private cookieService:CookieService, private sharedData:Shared) {
+      this.currentUserSubject = new BehaviorSubject<User>(sharedData.getLoggedInUser());
       this.currentUser = this.currentUserSubject.asObservable();
    }
    getUsers():Observable<any>{
@@ -46,17 +45,18 @@ export class UserService {
    login(username, password):Observable<any> {
     return this.http.post<User>(`${this.sharedData.BASE_URL}/login`,{"username":username,"password":password})
         .pipe(map(user => {
-            if(user.token && user.token !== undefined && user.token !== null)localStorage.setItem('user', JSON.stringify(user));
-          
+            if(user.token && user.token !== undefined && user.token !== null){
+            this.cookieService.set("user",JSON.stringify(user),1);
             this.currentUserSubject.next(user);
             return user;
+            }
         }));
     }
     register(user:User,addresses:Address[]):Observable<any>{
       console.log({user,addresses});
       return this.http.post<User>(`${this.sharedData.BASE_URL}/register`,{user,addresses}).pipe(
         map(user =>{
-          if(user.token !== null)localStorage.setItem('user', JSON.stringify(user));
+          if(user.token !== null)this.cookieService.set("user",JSON.stringify(user),1);
          
             this.currentUserSubject.next(user);
           return user;
@@ -64,8 +64,8 @@ export class UserService {
       )
     }
     logout(){
-      localStorage.removeItem('user');
-      this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
+      this.cookieService.delete("user");
+      this.currentUserSubject = new BehaviorSubject<User>(null);
       this.router.navigate(["login"]);
       this.toastService.showInfo("Sikeres kijelentkezés!","Kijelentkezés");
     }
@@ -73,6 +73,7 @@ export class UserService {
       return this.currentUserSubject.value;
   }
   getHeaderOption():any{
+   
     return this.options = {
       headers:new HttpHeaders({
         'Content-Type':'application/json',
